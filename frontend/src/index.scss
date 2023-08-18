@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@100;400&display=swap');
+$titleFont: url('./assets/fonts/delvonDemo.ttf') format('truetype');
+
+@font-face {
+    font-family: 'DelvonDemo';
+    src: $titleFont;
+    font-weight: normal;
+    font-style: normal;
+}
+
+$main-font:'Montserrat', serif;
+$background-Top: #000000;
+$background-Main: #212020;
+$background-Question: #1B355F;
+$background-Buttons: #D9D9D9;
+$mainColor-Text:#FFFFFF;
+$secondColor-Text:#000000;
+$rightAnswer-Color:#236A1D;
+$wrongAnswer-Color:#E90000;
+$diamond-Color: #FFFFFF;
+$gold-Color: #FFD700;
+$silver-Color: #C0C0C0;
+$bronze-Color: #CD7F32;
+$iron-Color: #706F6F;
+$chocolate-Color: #8B5A2B;
