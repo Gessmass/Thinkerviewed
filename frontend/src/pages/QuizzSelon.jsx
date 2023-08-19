@@ -1,10 +1,7 @@
-import "./QuizzSelon.scss";
-
+import "./QuizzSelon.scss"
 
 const QuizzSelon = () => {
-    return (
-        <h1>Je suis dans QuizzSelon</h1>
-    )
+  return <h1>Je suis dans QuizzSelon</h1>
 }
 
-export default QuizzSelon;
+export default QuizzSelon

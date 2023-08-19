@@ -1,10 +1,7 @@
-import "./About.scss";
-
+import "./About.scss"
 
 const About = () => {
-    return (
-        <h1>Je suis dans About</h1>
-    )
+  return <h1>Je suis dans About</h1>
 }
 
-export default About;
+export default About

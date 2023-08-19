@@ -1,10 +1,7 @@
-import "./Categories.scss";
-
+import "./Categories.scss"
 
 const Categories = () => {
-    return (
-        <h1>Je suis dans Categories</h1>
-    )
+  return <h1>Je suis dans Categories</h1>
 }
 
-export default Categories;
+export default Categories

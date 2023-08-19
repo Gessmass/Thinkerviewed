@@ -1,10 +1,7 @@
-import "./Contact.scss";
-
+import "./Contact.scss"
 
 const Contact = () => {
-    return (
-        <h1>Je suis dans Contact</h1>
-    )
+  return <h1>Je suis dans Contact</h1>
 }
 
-export default Contact;
+export default Contact
