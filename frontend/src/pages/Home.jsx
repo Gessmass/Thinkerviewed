@@ -1,5 +1,6 @@
 import "./Home.scss"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
 const Home = () => {
   return (
@@ -14,6 +15,13 @@ const Home = () => {
           Choisissez un thème ou un intervenant, et commencez dès maintenant
         </p>
       </div>
+      <div className="selection">
+        <h2>NOTRE SELECTION</h2>
+      </div>
+      <div className="derniersQuiz">
+        <h2>DERNIERS QUIZ</h2>
+      </div>
+      <Footer />
     </div>
   )
 }
