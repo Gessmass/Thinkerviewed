@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Home from "./Pages/Home"
-import Contact from "./Pages/Contact"
-import About from "./Pages/About"
-import QuizzSelon from "./Pages/QuizzSelon"
-import QuizzCultureT from "./Pages/QuizzCultureT"
-import Categories from "./Pages/Categories"
+import Home from "./pages/Home"
+import Contact from "./pages/Contact"
+import About from "./pages/About"
+import QuizzSelon from "./pages/QuizzSelon"
+import QuizzCultureT from "./pages/QuizzCultureT"
+import Categories from "./pages/Categories"
 import "./App.scss"
 
 function App() {
