@@ -11,28 +11,53 @@
     align-items: center;
     margin: 5px 0 0 0;
     .p1 {
-        color: #FFF;
-        text-align: center;
-        font-family: $main-font;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        width: 317px;
-        height: 104px;
-        flex-shrink: 0;
-      }
-      .p2 {
-        color: #FFF;
-        text-align: center;
-        font-family: $main-font;
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: normal;
-        width: 317px;
-        height: 104px;
-        flex-shrink: 0;
-      }
+      color: #fff;
+      text-align: center;
+      font-family: $main-font;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      width: 317px;
+      height: 104px;
+      flex-shrink: 0;
+    }
+    .p2 {
+      color: #fff;
+      text-align: center;
+      font-family: $main-font;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      width: 317px;
+      height: 104px;
+      flex-shrink: 0;
+    }
+  }
+  .sectionTitle {
+    color: #000000;
+    font-family: $main-font;
+    font-size: 20px;
+    background-color: #ffffff;
+  }
+  .carrousel {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    gap: 5px;
+    .videos {
+      border: 1px solid white;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .carrouselButtons {
+      width: fit-content;
+    }
   }
 }
