@@ -5,7 +5,7 @@
   height: 86px;
   background-color: $background-Navbar;
   border-bottom: 2px solid white;
-  overflow: hidden;
+
   img {
     width: 198px;
     height: 41.787px;
@@ -14,7 +14,7 @@
 }
 
 #menuToggle {
-  display: block;
+//   display: block;
   position: absolute;
   top: 32px;
   right: 40px;
@@ -105,22 +105,20 @@
   * Make this absolute positioned
   * at the top left of the screen
   */
+
 #menu {
   position: absolute;
   width: 80vw;
   height: 100vh;
-  margin: -100px 0 0 -230px;
+  margin: -100px 0 0 -239px;
   padding: 30px;
   padding-top: 125px;
-
   background: #ededed;
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
-
   transform-origin: 0% 0%;
   transform: translate(100%, 0);
-
   transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 

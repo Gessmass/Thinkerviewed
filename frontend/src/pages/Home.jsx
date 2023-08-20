@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "./Home.scss"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import HomeButtons from "../components/HomeButtons"
 
 const Home = () => {
@@ -48,6 +49,13 @@ const Home = () => {
         </div>
       </div>
       <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
+      <div className="selection">
+        <h2>NOTRE SELECTION</h2>
+      </div>
+      <div className="derniersQuiz">
+        <h2>DERNIERS QUIZ</h2>
+      </div>
+      <Footer />
     </div>
   )
 }
