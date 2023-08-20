@@ -2,18 +2,22 @@ import { useState } from "react"
 import "./Home.scss"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import HomeButtons from "../components/HomeButtons"
+import CarrouselVideos from "../components/CarrouselVideos"
+import LatestQuizz from "../components/LatestQuizz"
 
 const Home = () => {
-  const videoUrls = [
-    "https://www.youtube.com/embed/q-rVcT0tpj0",
-    "https://www.youtube.com/embed/TeW5tlALx_I",
-    "https://www.youtube.com/embed/VwP9Ikznkgw",
-  ]
-  const [selectedVideoUrl, setSelectedVideoUrl] = useState("")
+  const videos = {
+    "video 1": "https://www.youtube.com/embed/q-rVcT0tpj0",
+    "video 2": "https://www.youtube.com/embed/TeW5tlALx_I",
+    "video 3": "https://www.youtube.com/embed/VwP9Ikznkgw",
+    "video 4": "https://www.youtube.com/embed/FkiMqLD3_YQ",
+    "video 5": "https://www.youtube.com/embed/_x8lmFjSB0A",
+  }
 
-  const handleVideoChange = (videoUrl) => {
-    setSelectedVideoUrl(videoUrl)
+  const [selectedVideo, setSelectedVideo] = useState("")
+
+  const handleVideoChange = (video) => {
+    setSelectedVideo(video)
   }
 
   return (
@@ -34,21 +38,22 @@ const Home = () => {
           <iframe
             width="343"
             height="200"
-            src={selectedVideoUrl}
+            src={videos[selectedVideo]}
             title="Selected Video"
             frameBorder="0"
             allowFullScreen
           />
         </div>
         <div className="carrouselButtons">
-          <HomeButtons
-            videos={videoUrls}
-            selectedVideoUrl={selectedVideoUrl}
+          <CarrouselVideos
+            videos={videos}
+            selectedVideo={selectedVideo}
             onChange={handleVideoChange}
           />
         </div>
       </div>
       <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
+      <LatestQuizz />
       <div className="selection">
         <h2>NOTRE SELECTION</h2>
       </div>

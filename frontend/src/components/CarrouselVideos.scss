@@ -1,0 +1,16 @@
+.notClicked {
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: #f3f3f3;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  transition: background-color 1.1s, color 1.1s;
+}
+
+.clicked {
+  background-color: #878787;
+  color: #878787;
+}
