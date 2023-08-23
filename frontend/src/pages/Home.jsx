@@ -54,12 +54,6 @@ const Home = () => {
       </div>
       <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
       <LatestQuizz />
-      <div className="selection">
-        <h2>NOTRE SELECTION</h2>
-      </div>
-      <div className="derniersQuiz">
-        <h2>DERNIERS QUIZ</h2>
-      </div>
       <Footer />
     </div>
   )
