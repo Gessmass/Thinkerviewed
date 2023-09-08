@@ -5,7 +5,6 @@
   height: 86px;
   background-color: $background-Navbar;
   border-bottom: 2px solid white;
-
   img {
     width: 198px;
     height: 41.787px;
@@ -14,10 +13,10 @@
 }
 
 #menuToggle {
-  //   display: block;
+  // display: block;
   position: absolute;
   top: 32px;
-  right: 40px;
+  right: 39px;
   z-index: 1;
   -webkit-user-select: none;
   user-select: none;
@@ -107,6 +106,7 @@
   */
 
 #menu {
+  border: 2px solid red;
   position: absolute;
   width: 80vw;
   height: 100vh;
