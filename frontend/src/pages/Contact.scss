@@ -1,0 +1,70 @@
+#mainDivContactUs {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  #topDivContactUs {
+    background-color: #ffffff;
+    text-align: center;
+    h1 {
+      font-size: 20px;
+      font-family: $main-font;
+    }
+  }
+  #mainContentDivContactUs {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    #divTopContent {
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #ffffff;
+      text-align: center;
+      p {
+        font-family: $main-font;
+      }
+    }
+    #divMiddleContent {
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      justify-items: center;
+      text-align: center;
+      width: 100%;
+      height: 60%;
+
+      #userMessage {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background-color: #d9d9d9;
+        padding: 15px;
+        text-align: left;
+        vertical-align: top;
+        word-wrap: break-word;
+        outline: none;
+      }
+    }
+    #divBottomContent {
+      display: flex;
+      justify-content: center;
+      justify-items: center;
+      width: 100%;
+      height: 5%;
+      #sendMessageButton {
+        background-color: #d9d9d9;
+        font-family: $main-font;
+        font-size: 15px;
+        border-radius: 10px;
+        width: 50%;
+        height: 100%;
+      }
+    }
+  }
+}
