@@ -1,7 +1,12 @@
-import "./Categories.scss"
+import Navbar from "../components/Navbar"
 
 const Categories = () => {
-  return <h1>Je suis dans Categories</h1>
+  return (
+    <>
+      <Navbar />
+      <h1>Je suis dans Categories</h1>
+    </>
+  )
 }
 
 export default Categories

@@ -1,1 +1,63 @@
-@import "../index.scss";
+.homeBody {
+  width: 100vw;
+  height: 100%;
+  .presentation {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0 10px 0;
+    gap: 20px;
+    .p1 {
+      color: #fff;
+      text-align: center;
+      font-family: $main-font;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: lighter;
+      line-height: normal;
+      width: 347px;
+      height: fit-content;
+      flex-shrink: 0;
+    }
+    .p2 {
+      color: #fff;
+      text-align: center;
+      font-family: $main-font;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: normal;
+      width: 317px;
+      height: fit-content;
+      flex-shrink: 0;
+    }
+  }
+  .sectionTitle {
+    color: #000000;
+    font-family: $main-font;
+    font-size: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    padding-left: 10px;
+  }
+  .carrousel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 15px 0 10px 0;
+    .videos {
+      border: 1px solid rgb(255, 255, 255);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+    .carrouselButtons {
+      width: fit-content;
+    }
+  }
+}

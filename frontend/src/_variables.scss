@@ -1,15 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&family=Montserrat:wght@100;400&display=swap");
-$titleFont: url("./assets/fonts/delvonDemo.ttf") format("truetype");
 
 @font-face {
   font-family: "DelvonDemo";
-  src: $titleFont;
+  src: url("./assets/fonts/delvonDemo.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 $main-font: "Montserrat", serif;
-$background-Top: #000000;
+$background-Navbar: #000000;
 $background-Main: #212020;
 $background-Question: #1b355f;
 $background-Buttons: #d9d9d9;

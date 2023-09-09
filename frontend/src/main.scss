@@ -1,0 +1,18 @@
+@import "./_variables";
+
+@import "./App.scss";
+
+//Components
+@import "./components/CarrouselVideos.scss";
+@import "./components/Footer.scss";
+@import "./components/LatestQuizz.scss";
+@import "./components/Navbar.scss";
+@import "./components/SlideinMenu.scss";
+
+//Pages
+@import "./pages/About.scss";
+@import "./pages/Categories.scss";
+@import "./pages/Contact.scss";
+@import "./pages/Home.scss";
+@import "./pages/QuizzCultureT.scss";
+@import "./pages/QuizzSelon.scss";

@@ -1,5 +1,3 @@
-import "./QuizzSelon.scss"
-
 const QuizzSelon = () => {
   return <h1>Je suis dans QuizzSelon</h1>
 }
