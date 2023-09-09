@@ -1,0 +1,27 @@
+#abousUsMainDiv {
+  #topDivAboutUs {
+    background-color: #ffffff;
+    text-align: center;
+    h1 {
+      font-family: $main-font;
+      font-size: 20px;
+    }
+  }
+  #mainContentContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    #mainContent {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+      p {
+        font-family: $main-font;
+      }
+    }
+  }
+}
