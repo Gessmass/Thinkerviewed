@@ -1,4 +1,3 @@
-import "./Categories.scss"
 import Navbar from "../components/Navbar"
 
 const Categories = () => {

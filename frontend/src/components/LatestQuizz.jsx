@@ -1,5 +1,3 @@
-import "./LatestQuizz.scss"
-
 const LatestQuizz = () => {
   const LatestVideos = [
     "https://www.youtube.com/embed/q-rVcT0tpj0",

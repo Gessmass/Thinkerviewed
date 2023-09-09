@@ -1,5 +1,3 @@
-import "./CarrouselVideos.scss"
-
 const CarrouselVideos = ({ videos, onChange, selectedVideo }) => {
   const handleVideoChange = (video) => {
     onChange(video)

@@ -1,4 +1,3 @@
-import "./About.scss"
 import Navbar from "../components/Navbar"
 
 const About = () => {

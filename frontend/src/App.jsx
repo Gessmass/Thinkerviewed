@@ -5,7 +5,6 @@ import About from "./pages/About"
 import QuizzSelon from "./pages/QuizzSelon"
 import QuizzCultureT from "./pages/QuizzCultureT"
 import Categories from "./pages/Categories"
-import "./App.scss"
 
 function App() {
   return (

@@ -1,4 +1,3 @@
-import "./Footer.scss"
 import { Link } from "react-router-dom"
 import TipeeLogo from "../assets/images/TipeeLogo.png"
 

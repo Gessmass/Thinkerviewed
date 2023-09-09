@@ -1,4 +1,3 @@
-import "./Contact.scss"
 import Navbar from "../components/Navbar"
 
 const Contact = () => {

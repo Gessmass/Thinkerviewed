@@ -1,5 +1,4 @@
 import { useState } from "react"
-import "./Home.scss"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import CarrouselVideos from "../components/CarrouselVideos"
