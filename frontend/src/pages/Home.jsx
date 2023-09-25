@@ -1,6 +1,5 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
-import { Carousel } from "react-responsive-carousel"
 
 const Home = () => {
   return (
