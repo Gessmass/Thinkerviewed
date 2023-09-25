@@ -1,0 +1,36 @@
+#quizCardContent {
+  width: 43%;
+  height: fit-content;
+  cursor: pointer;
+  &:hover img {
+    border: 2px solid $purple-color;
+    transform: scale(1.01);
+    transition: 0.2s;
+  }
+  &:active img {
+    transform: scale(1.1);
+    transition: 0.2s;
+  }
+  #guestName {
+    font-size: 13px;
+    color: white;
+    font-family: $main-font;
+    width: 100%;
+    text-align: center;
+    font-weight: 200;
+  }
+  img {
+    aspect-ratio: 16/9;
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 6px;
+  }
+  #quizTitle {
+    font-size: 13px;
+    color: white;
+    font-family: $main-font;
+    width: 100%;
+    text-align: start;
+    font-weight: 500;
+  }
+}
