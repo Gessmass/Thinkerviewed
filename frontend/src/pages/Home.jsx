@@ -1,12 +1,9 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import { Carousel } from "react-responsive-carousel"
+// import { Carousel } from "react-responsive-carousel"
 
 const Home = () => {
   return (
-    <div className="homeBody">
-      <Navbar />
-      <div className="presentation">
+    <div id="homeBody">
+      <div id="presentation">
         <p className="p1">
           Thinkerviewed propose de tester vos connaissances des vidéos de la
           chaîne Thinkerview au travers de QCMs.
@@ -15,14 +12,13 @@ const Home = () => {
           Choisissez un thème ou un intervenant, et commencez dès maintenant
         </p>
       </div>
-      <div className="divSelection">
-        <h1 className="sectionTitle">NOTRE SELECTION</h1>
-      </div>
-      <div className="divDerniersQuizz">
-        <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
-      </div>
-      <div className="divFooter">
-        <Footer />
+      <div id="homepageContent">
+        <div id="divSelection">
+          <h1 className="sectionTitle">NOTRE SELECTION</h1>
+        </div>
+        <div id="divDerniersQuizz">
+          <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
+        </div>
       </div>
     </div>
   )

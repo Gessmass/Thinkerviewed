@@ -5,11 +5,14 @@ import About from "./pages/About"
 import QuizzSelon from "./pages/QuizzSelon"
 import QuizzCultureT from "./pages/QuizzCultureT"
 import Categories from "./pages/Categories"
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
 
 function App() {
   return (
     <>
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Contact" element={<Contact />} />
@@ -18,6 +21,7 @@ function App() {
           <Route path="/QuizzCultureT" element={<QuizzCultureT />} />
           <Route path="/Categories" element={<Categories />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   )
