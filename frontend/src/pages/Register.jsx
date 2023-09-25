@@ -23,6 +23,9 @@ const Register = () => {
         <div id="haveToMention">
           <span>Les champs contenant * sont obligatoires</span>
         </div>
+        <div id="buttonRegister">
+          <button type="button">Inscription</button>
+        </div>
       </div>
       <Footer />
     </div>

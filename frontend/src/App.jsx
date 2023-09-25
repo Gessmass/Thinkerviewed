@@ -5,6 +5,7 @@ import About from "./pages/About"
 import QuizzSelon from "./pages/QuizzSelon"
 import QuizzCultureT from "./pages/QuizzCultureT"
 import Categories from "./pages/Categories"
+import Register from "./pages/Register"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/QuizzSelon" element={<QuizzSelon />} />
           <Route path="/QuizzCultureT" element={<QuizzCultureT />} />
           <Route path="/Categories" element={<Categories />} />
+          <Route path="/Register" element={<Register />} />
         </Routes>
       </Router>
     </>
