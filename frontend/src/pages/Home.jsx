@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import { Carousel } from "react-responsive-carousel"
 
 const Home = () => {
   return (
@@ -14,9 +15,15 @@ const Home = () => {
           Choisissez un thème ou un intervenant, et commencez dès maintenant
         </p>
       </div>
-      <h1 className="sectionTitle">NOTRE SELECTION</h1>
-      <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
-      <Footer />
+      <div className="divSelection">
+        <h1 className="sectionTitle">NOTRE SELECTION</h1>
+      </div>
+      <div className="divDerniersQuizz">
+        <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
+      </div>
+      <div className="divFooter">
+        <Footer />
+      </div>
     </div>
   )
 }

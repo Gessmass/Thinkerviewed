@@ -1,5 +1,3 @@
-// import SlideinMenu from "./SlideinMenu"
-
 import Logo from "../assets/images/Logo.png"
 
 function Navbar() {
