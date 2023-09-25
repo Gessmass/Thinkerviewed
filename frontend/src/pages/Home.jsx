@@ -2,7 +2,6 @@ import { useState } from "react"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 import CarrouselVideos from "../components/CarrouselVideos"
-import LatestQuizz from "../components/LatestQuizz"
 
 const Home = () => {
   const videos = {
@@ -52,7 +51,7 @@ const Home = () => {
         </div>
       </div>
       <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
-      <LatestQuizz />
+      .map dernier quizz à faire ici.
       <Footer />
     </div>
   )
