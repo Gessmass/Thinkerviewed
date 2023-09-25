@@ -1,13 +1,19 @@
-.homeBody {
-  width: 100vw;
+#homeBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  .presentation {
+  justify-content: center;
+  border: 2px solid orange;
+  #presentation {
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     align-items: center;
-    margin: 5px 0 10px 0;
-    gap: 20px;
+    margin: 5px 0 5px 0;
+    gap: 10px;
+    border: 2px solid lime;
+    width: 100%;
+    height: 100px;
     .p1 {
       color: #fff;
       text-align: center;
@@ -33,17 +39,32 @@
       flex-shrink: 0;
     }
   }
-  .sectionTitle {
-    color: #000000;
-    font-family: $main-font;
-    font-size: 20px;
-    width: 100%;
-    background-color: #ffffff;
-    padding-left: 10px;
-  }
-  .divFooter {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+  #homepageContent {
+    border: 2px solid blue;
+    height: 5%;
+    #divSelection {
+      border: 2px solid red;
+      height: 100%;
+      width: 100%;
+      .sectionTitle {
+        color: #000000;
+        font-family: $main-font;
+        font-size: 20px;
+        width: 100%;
+        background-color: #ffffff;
+        padding-left: 10px;
+      }
+    }
+    #divDerniersQuizz {
+      border: 2px solid red;
+      .sectionTitle {
+        color: #000000;
+        font-family: $main-font;
+        font-size: 20px;
+        width: 100%;
+        background-color: #ffffff;
+        padding-left: 10px;
+      }
+    }
   }
 }
