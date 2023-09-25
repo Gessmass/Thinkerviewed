@@ -9,6 +9,7 @@ body {
   background-color: $background-Main;
   height: 100%;
   margin: 0;
+  // border:solid 1px yellow;
 }
 
 #root {
@@ -19,7 +20,7 @@ body {
 
 .page-container {
   min-height: 87vh;
-  border: 2px solid lime;
+  // border: 2px solid lime;
   flex: 1 0 auto;
 }
 
