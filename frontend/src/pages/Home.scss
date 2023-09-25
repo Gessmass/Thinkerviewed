@@ -1,17 +1,16 @@
 #homeBody {
+  border: 2px solid red;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: center;
-  border: 2px solid orange;
   #presentation {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 5px 0 5px 0;
     gap: 10px;
-    border: 2px solid lime;
     width: 100%;
     height: 100px;
     .p1 {
@@ -40,11 +39,9 @@
     }
   }
   #homepageContent {
-    border: 2px solid blue;
     height: 5%;
     #divSelection {
-      border: 2px solid red;
-      height: 100%;
+      height: 100px;
       width: 100%;
       .sectionTitle {
         color: #000000;
@@ -56,7 +53,6 @@
       }
     }
     #divDerniersQuizz {
-      border: 2px solid red;
       .sectionTitle {
         color: #000000;
         font-family: $main-font;
