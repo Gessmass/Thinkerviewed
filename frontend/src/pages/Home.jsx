@@ -1,30 +1,24 @@
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import QuizCard from "../components/QuizCard"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 const Home = () => {
-  const testSelection = [
-    {
-      image: "assets/images/QuizzThumbnails/TestCarou1.png",
-      title: "Effondrement : notre civilisation au bord du gouffre ?",
-      guest: "Aurore Stefant",
-    },
-    {
-      image: "assets/images/QuizzThumbnails/TestCarou2.jpeg",
-      title: "Déconsommateurs : cache-misère des gouvernements ?",
-      guest: "Jean-Marc Jancovici",
-    },
-    {
-      image: "assets/images/QuizzThumbnails/TestCarou3.jpeg",
-      title: "La guerre des intelligences ?",
-      guest: "Laurent Alexandre",
-    },
-    {
-      image: "assets/images/QuizzThumbnails/TestCarou4.jpeg",
-      title: "Stratège de guerre : Sabotages, Cupidité et Agressions",
-      guest: "Jérome Clech",
-    },
-  ]
+  const [quizsToDisplay, setQuizsToDisplay] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/questionnary`)
+      .then((res) => {
+        setQuizsToDisplay(res.data)
+      })
+      .catch((err) => {
+        console.info("Error when getting Questionnary", err)
+      })
+  })
+
+  console.info(quizsToDisplay)
 
   return (
     <div id="homeBody">
@@ -53,7 +47,7 @@ const Home = () => {
               <div>
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    testSelection[0].image
+                    quizsToDisplay[0].image
                   }`}
                   alt="Slide 1"
                   className="slide"
@@ -62,7 +56,7 @@ const Home = () => {
               <div>
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    testSelection[1].image
+                    quizsToDisplay[1].image
                   }`}
                   alt="Slide 2"
                   className="slide"
@@ -71,7 +65,7 @@ const Home = () => {
               <div>
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    testSelection[2].image
+                    quizsToDisplay[2].image
                   }`}
                   alt="Slide 3"
                   className="slide"
@@ -83,7 +77,7 @@ const Home = () => {
         <div id="divDerniersQuizz">
           <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
           <div id="derniersQuizContent">
-            {testSelection.map((quiz, index) => (
+            {quizsToDisplay.map((quiz, index) => (
               <QuizCard
                 key={index}
                 thumbnail={quiz.image}
