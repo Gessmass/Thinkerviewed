@@ -5,9 +5,10 @@ const addUser = async (user) => {
 
   try {
     const [result] = await db.query(
-      "insert into 'users' (username, email_adress, hashed_password) values (?,?,?)",
+      "INSERT INTO users (username, email_adress, hashed_password, registration_date) VALUES (?,?,?, NOW())",
       [username, email, password]
     )
+
     return { id: result.insertID, username, email }
   } catch (err) {
     console.error(err)

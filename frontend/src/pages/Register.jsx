@@ -9,7 +9,7 @@ const Register = () => {
 
   const createUser = () => {
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/createUser`, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/user/createUser`, {
         username,
         email,
         password: firstPassword,

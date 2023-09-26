@@ -3,7 +3,8 @@ const validateUser = require("../validators/userValidator.js")
 const { hashPassword } = require("../helper/argonHelper.js")
 
 const createUser = async (req, res) => {
-  //   const { username, email, password } = req.body
+  // const { username, email, password } = req.body
+  // console.log(req.body)
 
   try {
     const errors = validateUser(req.body)
@@ -11,7 +12,7 @@ const createUser = async (req, res) => {
       return res.status(401).send(errors)
     }
 
-    const hashedPassword = await hashPassword(req.bodsy.password)
+    const hashedPassword = await hashPassword(req.body.password)
 
     const result = await addUser({ ...req.body, password: hashedPassword })
     res.status(201).send(result)
