@@ -51,14 +51,14 @@ DROP TABLE IF EXISTS `Questionnary`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `Questionnary` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) NOT NULL,
-  `video_link` varchar(255) NOT NULL,
-  `categorie` enum('Energie','Sciences','Societe','Medias','Terrorisme','Environnement','Economie et Finance','Geopolitique','Internet et Technologie') NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `video_link` varchar(300) NOT NULL,
+  `categorie` set('Energie','Sciences','Societe','Medias','Terrorisme','Environnement','Economie et Finance','Geopolitique','Internet et Technologie') NOT NULL,
   `keywords` varchar(255) NOT NULL,
   `protagonist` varchar(45) NOT NULL,
   `miniature` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,6 +67,7 @@ CREATE TABLE `Questionnary` (
 
 LOCK TABLES `Questionnary` WRITE;
 /*!40000 ALTER TABLE `Questionnary` DISABLE KEYS */;
+INSERT INTO `Questionnary` VALUES (1,'Effondrement: notre civilisation au bord du gouffre ?','https://www.youtube.com/embed/FkiMqLD3_YQ?si=uMBYX_st-xCSPsGt','Energie,Environnement','environnement, aurore, stefant, effondrement, civilisation, gouffre, mines, minerais, géologie, risques','Aurore Stéfant','assets/images/QuizzThumbnails/AuroreStefant_Effondrement.png'),(2,'Déconsommateurs : le cache-misère des gouvernements ?','https://www.youtube.com/embed/DfFohLBPh2Y?si=hXi74xFEjneIShJ6','Energie,Environnement','environnement, energie, jean, jarc, jancovici, climat, gouvernement, shift, projetct, ingenieur','Jean-Marc Jancovici','assets/images/QuizzThumbnails/JeanMarcJancovici_Déconsommateurs.jpeg'),(3,'La guerre des intelligences','https://www.youtube.com/embed/D3hR6nMZHG8?si=7z_HN7-VDUCxnueb','Energie,Societe,Internet et Technologie','laurent, alexandre, energie, societe, internet, guerre, des, intelligences, technophile','Laurent Alexandre','assets/images/QuizzThumbnails/LaurentAlexandre_GuerreDesIntelligences.jpeg'),(4,'Stratège de guerre : Sabotages, Cupidité et Agressions ?','https://www.youtube.com/embed/V5rrujhVFU0?si=JYR_wmk1qhHV2Cy0','Energie,Societe,Geopolitique','jerome, clech, stratege, de, guerre, sabotages, cupidite, agressions, strategie, energie, climat, geopolitique','Jérôme Clech','assets/images/QuizzThumbnails/JeromeClech_StrategeDeGuerre.jpeg');
 /*!40000 ALTER TABLE `Questionnary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +115,7 @@ CREATE TABLE `Users` (
   `email_adress` varchar(255) NOT NULL,
   `hashed_password` varchar(255) NOT NULL,
   `registration_date` datetime NOT NULL,
-  `score` int NOT NULL,
+  `score` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -164,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 12:50:27
+-- Dump completed on 2023-09-26 15:22:33
