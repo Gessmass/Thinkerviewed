@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const { getAll } = require("../Controllers/questionnaryController")
+const { getAll } = require("../controllers/questionnaryController")
 
 router.get("/", getAll)
 
