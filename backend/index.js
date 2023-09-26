@@ -12,3 +12,13 @@ app.listen(port, (err) => {
     console.log(`Server is listening on ${port}`)
   }
 })
+
+// pour afficher sur iphone
+// app.listen(port, "0.0.0.0", (err) => {
+//   if (err) {
+//     console.error("Something bad happened")
+//   } else {
+//     // eslint-disable-next-line no-restricted-syntax
+//     console.log(`Server is listening on http://0.0.0.0:${port}`)
+//   }
+// })
