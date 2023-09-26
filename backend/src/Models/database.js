@@ -22,7 +22,6 @@ pool.getConnection().catch(() => {
 // declare and fill models: that's where you should register your own managers
 
 const models = {}
-
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
 
