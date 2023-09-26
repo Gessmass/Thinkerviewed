@@ -24,6 +24,8 @@ const Register = () => {
         )
       })
   }
+  console.info("first", firstPassword)
+  console.info("verify", verifyPassword)
 
   return (
     <div id="mainContentRegister">
