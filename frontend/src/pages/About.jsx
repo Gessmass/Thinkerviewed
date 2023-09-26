@@ -1,9 +1,6 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 const About = () => {
   return (
     <div id="abousUsMainDiv">
-      <Navbar />
       <div id="topDivAboutUs">
         <h1>Qui sommes nous ?</h1>
       </div>
@@ -58,7 +55,6 @@ const About = () => {
           </p>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

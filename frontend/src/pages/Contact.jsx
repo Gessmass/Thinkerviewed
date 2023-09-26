@@ -1,10 +1,6 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-
 const Contact = () => {
   return (
     <div id="mainDivContactUs">
-      <Navbar />
       <div id="topDivContactUs">
         <h1>Contactez-nous</h1>
       </div>
@@ -29,7 +25,6 @@ const Contact = () => {
           </button>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

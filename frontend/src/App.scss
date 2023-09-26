@@ -4,6 +4,29 @@
   box-sizing: border-box;
 }
 
-html {
+html,
+body {
   background-color: $background-Main;
+  height: 100%;
+  margin: 0;
+  // border:solid 1px yellow;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Utilisez vh (viewport height) au lieu de % */
+}
+
+.page-container {
+  min-height: 87vh;
+  // border: 2px solid lime;
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0; /* Cela positionne le footer en bas de la page */
+  width: 100%; /* Assurez-vous que le footer s'étend sur toute la largeur de la page */
 }
