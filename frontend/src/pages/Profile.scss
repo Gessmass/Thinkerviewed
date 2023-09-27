@@ -1,0 +1,55 @@
+#mainDivProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  #firstContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    border: 1px solid blue;
+  }
+  #secondContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    gap: 15%;
+    border: 1px solid red;
+    #titleProgressDiv {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      width: 100%;
+    }
+    .progressBar {
+      color: white;
+    }
+  }
+  #thirdContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    border: 1px solid purple;
+  }
+  #lastContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    border: 1px solid silver;
+  }
+}
