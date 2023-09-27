@@ -18,7 +18,7 @@ const addUser = async (user) => {
 const findUserByUsernameOrEmail = async (username, email) => {
   try {
     const [user] = await db.query(
-      "SELECT * FROM users WHERE username = ? OR email_adress = ?",
+      "SELECT * FROM Users WHERE username = ? OR email_adress = ?",
       [username, email]
     )
 
