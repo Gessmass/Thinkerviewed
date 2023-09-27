@@ -9,7 +9,7 @@ export default function ConnectionPopup({ closePopup }) {
 
   const handleLogin = () => {
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/user/login`, {
         username,
         password,
       })
@@ -61,7 +61,7 @@ export default function ConnectionPopup({ closePopup }) {
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
-            type="text"
+            type="password"
             placeholder="Mot de passe"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
