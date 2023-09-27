@@ -1,61 +1,131 @@
 .navbarBody {
-  width: 390px;
-  height: 86px;
+  width: 100%;
+  height: 100px;
   background-color: $background-Navbar;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #ffffff;
+  button {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+  }
   img {
     width: 198px;
-    height: 41.787px;
-    margin: 20px 0 0 26px;
+    height: 42px;
+    margin: 20px 0 10px 15px;
+  }
+  .dropdown-menu {
+    top: 74px;
+    position: absolute;
+    right: 0;
+    width: 70%;
+    background-color: #000000;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 4;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border-bottom: 2px solid $diamond-Color;
+    transform-origin: top;
+    visibility: hidden;
+    height: 50%;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 1);
+    nav {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      a {
+        color: rgb(255, 255, 255);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        font-family: $main-font;
+        font-size: 25px;
+        width: 100%;
+      }
+      img {
+        border-radius: 50%;
+        width: 100px;
+        height: auto;
+        aspect-ratio: 1;
+        border: 2px solid white;
+      }
+    }
   }
 }
 
-li a {
-  text-decoration: none;
-  color: #2d2f31;
+.dropdown-menu {
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-nav {
-  width: 300px;
-  background: #d9d9d9;
-  margin: 40px auto;
+.dropdown-menu.open {
+  max-height: 100%;
+  visibility: visible;
 }
-
-span {
-  padding: 30px;
-  background: #2d2f31;
-  color: white;
-  font-size: 1.2em;
-  font-variant: small-caps;
+.burger {
+  position: absolute;
+  top: 23px;
+  right: 30px;
+  width: 40px;
+  height: 30px;
+  background: transparent;
   cursor: pointer;
   display: block;
 }
 
-span::after {
-  float: right;
-  right: 10%;
-  content: "+";
+.burger input {
+  display: none;
 }
 
-.slide {
-  clear: both;
-  width: 100%;
-  height: 0px;
-  overflow: hidden;
-  text-align: center;
-  transition: height 0.4s ease;
-}
-
-.slide li {
-  padding: 30px;
-}
-
-#touch {
+.burger span {
+  display: block;
   position: absolute;
-  opacity: 0;
-  height: 0px;
+  height: 4px;
+  width: 100%;
+  background: rgb(255, 255, 255);
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
 }
 
-#touch:checked + .slide {
-  height: 300px;
+.burger span:nth-of-type(1) {
+  top: 0px;
+  transform-origin: left center;
+}
+
+.burger span:nth-of-type(2) {
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+}
+
+.burger span:nth-of-type(3) {
+  top: 100%;
+  transform-origin: left center;
+  transform: translateY(-100%);
+}
+
+.burger input:checked ~ span:nth-of-type(1) {
+  transform: rotate(45deg);
+  top: 0px;
+  left: 5px;
+}
+
+.burger input:checked ~ span:nth-of-type(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.burger input:checked ~ span:nth-of-type(3) {
+  transform: rotate(-45deg);
+  top: 28px;
+  left: 5px;
 }

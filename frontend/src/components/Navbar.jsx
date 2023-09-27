@@ -1,31 +1,38 @@
+import { useState } from "react"
 import Logo from "../assets/images/Logo.png"
 
 function Navbar() {
-  return (
-    <nav>
-      <div className="navbarBody">
-        <img src={Logo} alt="logo" />
-        <label htmlFor="touch">
-          <span>titre</span>
-        </label>
-        <input type="checkbox" id="touch" />
+  const [isOpen, setIsOpen] = useState(false)
 
-        <ul className="slide">
-          <li>
-            <a href="#">Lorem Ipsum</a>
-          </li>
-          <li>
-            <a href="#">Lorem Ipsum</a>
-          </li>
-          <li>
-            <a href="#">Lorem Ipsum</a>
-          </li>
-          <li>
-            <a href="#">Lorem Ipsum</a>
-          </li>
-        </ul>
+  const toggleDropdownMenu = () => {
+    setIsOpen(!isOpen)
+  }
+
+  return (
+    <div className="navbarBody">
+      <label className="burger" htmlFor="burger">
+        <input type="checkbox" id="burger" onClick={toggleDropdownMenu} />
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
+        <nav>
+          <img
+            src={`${
+              import.meta.env.VITE_BACKEND_URL
+            }/assets/images/testUserPic.jpg
+            `}
+            alt=""
+          />
+          <a href="#home">Accueil</a>
+          <a href="#services">Catégories</a>
+          <a href="#contact">Contact</a>
+          <a href="#contact">À Propos</a>
+        </nav>
       </div>
-    </nav>
+      <img src={Logo} alt="logo" />
+    </div>
   )
 }
 
