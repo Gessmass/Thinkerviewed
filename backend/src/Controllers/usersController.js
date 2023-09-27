@@ -2,6 +2,7 @@ const {
   addUser,
   findUserByUsernameOrEmail,
 } = require("../models/usersModel.js")
+
 const validateUser = require("../validators/userValidator.js")
 const { hashPassword } = require("../helper/argonHelper.js")
 
@@ -12,7 +13,7 @@ const createUser = async (req, res) => {
   try {
     const errors = validateUser(req.body)
     if (errors) {
-      return res.status(401).send(errors)
+      return res.status(400).send(errors)
     }
 
     const hashedPassword = await hashPassword(req.body.password)
@@ -25,7 +26,7 @@ const createUser = async (req, res) => {
 }
 
 const checkUserExistence = async (req, res) => {
-  const { username, email } = req.query
+  const { username, email } = req.body
 
   try {
     // Recherchez un utilisateur par nom d'utilisateur ou adresse e-mail
@@ -34,13 +35,14 @@ const checkUserExistence = async (req, res) => {
     if (Array.isArray(user) && user.length > 0) {
       // L'utilisateur existe déjà
       res.json({ userExists: true })
+      console.info({ userExists: true })
     } else {
       // L'utilisateur n'existe pas
       res.json({ userExists: false })
     }
   } catch (err) {
     console.error(err)
-    res.sendStatus(500)
+    res.status(500).send({ error: err.message })
   }
 }
 

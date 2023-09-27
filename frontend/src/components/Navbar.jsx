@@ -1,11 +1,29 @@
 import { useState } from "react"
 import Logo from "../assets/images/Logo.png"
+import ConnectionPopup from "./ConnectionPopup"
+import Cookies from "js-cookie"
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isConnected, setIsConnected] = useState(false)
+  const [displayPopup, setDisplayPopup] = useState(false)
 
   const toggleDropdownMenu = () => {
     setIsOpen(!isOpen)
+  }
+
+  const closePopup = () => {
+    setDisplayPopup(false)
+    if (isConnected === false) {
+      setIsConnected(true)
+    }
+  }
+
+  const handleDisconnect = () => {
+    setIsConnected(false)
+    Cookies.remove("authToken")
+    Cookies.remove("connectedUser")
+    console.info("Utilisateur déconnecté")
   }
 
   return (
@@ -18,21 +36,48 @@ function Navbar() {
       </label>
       <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
         <nav>
-          <img
-            src={`${
-              import.meta.env.VITE_BACKEND_URL
-            }/assets/images/testUserPic.jpg
+          {isConnected ? (
+            <img
+              src={`${
+                import.meta.env.VITE_BACKEND_URL
+              }/assets/images/testUserPic.jpg
             `}
-            alt="profilPicture"
-            id="profilPictureNavbar"
-          />
+              alt="profilPicture"
+              id="profilPictureNavbar"
+            />
+          ) : (
+            <button id="seConnecter" onClick={() => setDisplayPopup(true)}>
+              Se Connecter
+            </button>
+          )}
           <a href="#home">Accueil</a>
           <a href="#services">Catégories</a>
           <a href="#contact">Contact</a>
           <a href="#contact">À Propos</a>
         </nav>
+        {isConnected && (
+          <button id="disconnect" onClick={handleDisconnect}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
+              />
+            </svg>
+            Déconnexion
+          </button>
+        )}
       </div>
-      <img src={Logo} alt="logo" />
+      <img src={Logo} alt="logo" id="logoNavbar" />
+      {displayPopup && (
+        <ConnectionPopup closePopup={closePopup} isConnected={isConnected} />
+      )}
     </div>
   )
 }
