@@ -40,8 +40,20 @@ const findUserByID = async (id) => {
   }
 }
 
+const verifyUsernameForLogin = async (username) => {
+  try {
+    const [user] = await db.query("SELECT * FROM users WHERE username = ?", [
+      username,
+    ])
+    return user
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 module.exports = {
   addUser,
   findUserByUsernameOrEmail,
   findUserByID,
+  verifyUsernameForLogin,
 }

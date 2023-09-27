@@ -8,7 +8,6 @@ const Home = () => {
   const [quizsToDisplay, setQuizsToDisplay] = useState([])
 
   useEffect(() => {
-    console.info("use<effect")
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/questionnary`)
       .then((res) => {
