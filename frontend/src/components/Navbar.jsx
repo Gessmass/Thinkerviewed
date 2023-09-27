@@ -18,6 +18,13 @@ function Navbar() {
       </label>
       <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
         <nav>
+          <img
+            src={`${
+              import.meta.env.VITE_BACKEND_URL
+            }/assets/images/testUserPic.jpg
+            `}
+            alt=""
+          />
           <a href="#home">Accueil</a>
           <a href="#services">Catégories</a>
           <a href="#contact">Contact</a>
