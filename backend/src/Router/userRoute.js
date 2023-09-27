@@ -10,5 +10,7 @@ router.post(
   argonHelper.verifyPassword
 )
 router.post("/createUser", usersController.createUser)
+// router.get("/getUsers", usersController.getAllUsers)
+router.get("/checkUserExistence", usersController.checkUserExistence)
 
 module.exports = router
