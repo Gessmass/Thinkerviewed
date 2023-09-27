@@ -6,6 +6,16 @@ const Register = () => {
   const [username, setUsername] = useState("")
   const [firstPassword, setFirstPassword] = useState("")
   const [verifyPassword, setVerifyPassword] = useState("")
+  const [alreadyExist, setAlreadyExist] = useState(false)
+  const [notSamePassword, setNotSamePassword] = useState(false)
+
+  const checkPasswords = () => {
+    if (firstPassword === verifyPassword) {
+      createUser()
+    } else {
+      setNotSamePassword(true)
+    }
+  }
 
   const createUser = () => {
     axios
@@ -33,6 +43,7 @@ const Register = () => {
             })
         } else {
           console.error("Pseudo ou adresse mail déjà utilisé")
+          setAlreadyExist(true)
         }
       })
       .catch((err) => {
@@ -83,12 +94,30 @@ const Register = () => {
         <span>Les champs contenant * sont obligatoires</span>
       </div>
       <div id="buttonRegister">
-        <button
-          type="button"
-          onClick={firstPassword === verifyPassword ? createUser : ""}
-        >
+        <button type="button" onClick={checkPasswords}>
           Inscription
         </button>
+        <div
+          id={
+            notSamePassword === true
+              ? "errorPasswordRegister"
+              : "noDisplayPassword"
+          }
+          className="passwordErrorDivRegister"
+        >
+          <span>Les mots de passe ne correspondent pas</span>
+        </div>
+      </div>
+      <div id="userExist">
+        <div
+          id={alreadyExist === true ? "errorMessageDiv" : "noDisplayRegister"}
+          className="userExistErrorDivRegister"
+        >
+          <span>
+            Un utilisateur utilisant ce pseudo ou cette adresse email existe
+            déjà
+          </span>
+        </div>
       </div>
     </div>
   )
