@@ -110,14 +110,14 @@ DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `profil_picture` varchar(255) NOT NULL,
+  `profil_picture` varchar(255) NOT NULL DEFAULT 'assets/images/testUserPic.jpg',
   `progression` int NOT NULL DEFAULT '0',
   `email_adress` varchar(255) NOT NULL,
   `hashed_password` varchar(255) NOT NULL,
   `registration_date` datetime NOT NULL,
   `score` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,6 +126,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES (1,'Romain','assets/images/testUserPic.jpg',0,'rom@gitan.com','$argon2id$v=19$m=65536,t=5,p=1$wKFf+lyxo60LYWNuHc9sow$aJJGP3oooUzvpXhQt1aMPEJoB7maL37wge0V+sUNi3A','2023-09-26 16:34:15',0);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-26 15:22:33
+-- Dump completed on 2023-09-26 16:50:56

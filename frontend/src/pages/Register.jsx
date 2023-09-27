@@ -9,23 +9,36 @@ const Register = () => {
 
   const createUser = () => {
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/user/createUser`, {
-        username,
-        email,
-        password: firstPassword,
+      .get(`${import.meta.env.VITE_BACKEND_URL}/user/checkUserExistence`, {
+        params: { username, email },
       })
-      .then((res) => {
-        console.info("Utilisateur créé avec succès !", res.data)
+      .then((response) => {
+        const { userExists } = response.data
+
+        if (!userExists) {
+          axios
+            .post(`${import.meta.env.VITE_BACKEND_URL}/user/createUser`, {
+              username,
+              email,
+              password: firstPassword,
+            })
+            .then((res) => {
+              console.info("Utilisateur créé avec succès !", res.data)
+            })
+            .catch((err) => {
+              console.error(
+                "Problème lors de l'ajout des données de l'utilisateur",
+                err
+              )
+            })
+        } else {
+          console.error("Pseudo ou adresse mail déjà utilisé")
+        }
       })
       .catch((err) => {
-        console.error(
-          "Problème lors de l'ajout des données de l'utilisateur",
-          err
-        )
+        console.error("Erreur lors de la vérification de l'utilisateur", err)
       })
   }
-  console.info("first", firstPassword)
-  console.info("verify", verifyPassword)
 
   return (
     <div id="mainContentRegister">
