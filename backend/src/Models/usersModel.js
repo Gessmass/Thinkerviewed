@@ -15,6 +15,21 @@ const addUser = async (user) => {
   }
 }
 
+const findUserByUsernameOrEmail = async (username, email) => {
+  try {
+    const [user] = await db.query(
+      "SELECT * FROM users WHERE username = ? OR email_adress = ?",
+      [username, email]
+    )
+
+    return user
+  } catch (err) {
+    console.error(err)
+    return null
+  }
+}
+
 module.exports = {
   addUser,
+  findUserByUsernameOrEmail,
 }
