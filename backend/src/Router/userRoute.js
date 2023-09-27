@@ -5,6 +5,6 @@ const usersController = require("../controllers/usersController.js")
 
 router.post("/createUser", usersController.createUser)
 // router.get("/getUsers", usersController.getAllUsers)
-router.get("/checkUserExistence", usersController.checkUserExistence);
+router.get("/checkUserExistence", usersController.checkUserExistence)
 
 module.exports = router
