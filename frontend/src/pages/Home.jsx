@@ -8,17 +8,17 @@ const Home = () => {
   const [quizsToDisplay, setQuizsToDisplay] = useState([])
 
   useEffect(() => {
+    console.info("use<effect")
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/questionnary`)
       .then((res) => {
         setQuizsToDisplay(res.data)
+        console.info(res.data)
       })
       .catch((err) => {
         console.info("Error when getting Questionnary", err)
       })
-  })
-
-  console.info(quizsToDisplay)
+  }, [])
 
   return (
     <div id="homeBody">
@@ -44,45 +44,31 @@ const Home = () => {
               showStatus={false}
               className="my-carousel"
             >
-              <div>
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    quizsToDisplay[0].image
-                  }`}
-                  alt="Slide 1"
-                  className="slide"
-                />
-              </div>
-              <div>
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    quizsToDisplay[1].image
-                  }`}
-                  alt="Slide 2"
-                  className="slide"
-                />
-              </div>
-              <div>
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    quizsToDisplay[2].image
-                  }`}
-                  alt="Slide 3"
-                  className="slide"
-                />
-              </div>
+              {quizsToDisplay.map((thumbnail, index) => {
+                return (
+                  <div key={index}>
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/${
+                        thumbnail.miniature
+                      }`}
+                      alt="Slide 1"
+                      className="slide"
+                    />
+                  </div>
+                )
+              })}
             </Carousel>
           </div>
         </div>
         <div id="divDerniersQuizz">
           <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
           <div id="derniersQuizContent">
-            {quizsToDisplay.map((quiz, index) => (
+            {quizsToDisplay.map((quiz) => (
               <QuizCard
-                key={index}
-                thumbnail={quiz.image}
+                key={quiz.id}
+                thumbnail={quiz.miniature}
                 title={quiz.title}
-                guest={quiz.guest}
+                guest={quiz.protagonist}
               />
             ))}
           </div>
