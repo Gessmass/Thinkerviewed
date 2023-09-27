@@ -3,11 +3,13 @@ import { useState } from "react"
 import Cookies from "js-cookie"
 import Logo from "../assets/images/Logo.png"
 
-export default function ConnectionPopup({ closePopup }) {
+export default function ConnectionPopup({ closePopup, onTrigger }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [displayError, setDisplayError] = useState(false)
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault()
     axios
       .post(`${import.meta.env.VITE_BACKEND_URL}/user/login`, {
         username,
@@ -18,15 +20,18 @@ export default function ConnectionPopup({ closePopup }) {
           console.info("Utilisateur connecté")
           const token = res.data.token
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
-          Cookies.set("connectedUser", JSON.stringify(res.data.user), {
+          Cookies.set("userData", JSON.stringify(res.data.user), {
             sameSite: "strict",
           })
           setUsername("")
           setPassword("")
           closePopup()
+          onTrigger()
         }
       })
       .catch((err) => {
+        setDisplayError(true)
+
         console.error("Erreur lors de la connexion de l'utilisateur", err)
       })
   }
@@ -67,7 +72,9 @@ export default function ConnectionPopup({ closePopup }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <p id="motdepasseoublie">Mot de passe oublié ?</p>
+        <p id={`mauvaisMotdepasse ${displayError ? "open" : ""}`}>
+          Mot de passe oublié ?
+        </p>
         <div id="buttonConnection">
           <button onClick={handleLogin}>Entrer</button>
         </div>

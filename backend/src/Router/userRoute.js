@@ -4,11 +4,7 @@ const router = express.Router()
 const usersController = require("../controllers/usersController.js")
 const argonHelper = require("../helper/argonHelper.js")
 
-router.post(
-  "/login",
-  usersController.checkUserExistence,
-  argonHelper.verifyPassword
-)
+router.post("/login", usersController.verifyUser, argonHelper.verifyPassword)
 
 router.post("/createUser", usersController.createUser)
 router.get("/checkUserExistence", usersController.checkUserExistence)

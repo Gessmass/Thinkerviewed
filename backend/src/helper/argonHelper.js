@@ -14,14 +14,18 @@ const hashPassword = (plainPassword) => {
 
 const verifyPassword = (req, res) => {
   argon2
-    .verify(req.user.hashedPassword, req.body.password, hashingOptions)
+    .verify(req.user.hashed_password, req.body.password, hashingOptions)
+    // ...
+
     .then((isVerified) => {
       if (isVerified) {
         const payload = { sub: req.user.id }
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "12h",
         })
-        delete req.user.hashedPassword
+        delete req.user.hashed_password
+        delete req.user.email_adress
+        delete req.user.registration_date
         res.send({ token, user: req.user })
       } else {
         res.sendStatus(401)
