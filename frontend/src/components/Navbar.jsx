@@ -23,7 +23,8 @@ function Navbar() {
               import.meta.env.VITE_BACKEND_URL
             }/assets/images/testUserPic.jpg
             `}
-            alt=""
+            alt="profilPicture"
+            id="profilPictureNavbar"
           />
           <a href="#home">Accueil</a>
           <a href="#services">Catégories</a>
