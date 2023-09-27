@@ -1,4 +1,10 @@
+import Cookies from "js-cookie"
+
 const Contact = () => {
+  const userString = Cookies.get("userData")
+  const userData = JSON.parse(userString)
+  console.info(userData)
+
   return (
     <div id="mainDivContactUs">
       <div id="topDivContactUs">

@@ -1,6 +1,7 @@
 const {
   addUser,
   findUserByUsernameOrEmail,
+  verifyUsernameForLogin,
 } = require("../models/usersModel.js")
 
 const validateUser = require("../validators/userValidator.js")
@@ -46,4 +47,20 @@ const checkUserExistence = async (req, res) => {
   }
 }
 
-module.exports = { createUser, checkUserExistence }
+const verifyUser = (req, res, next) => {
+  verifyUsernameForLogin(req.body.username)
+    .then(([user]) => {
+      if (user != null) {
+        req.user = user
+        next()
+      } else {
+        res.sendStatus(401)
+      }
+    })
+    .catch((err) => {
+      console.error("Error in verifyUser:", err)
+      res.status(500).send("Error retrieving data from the database")
+    })
+}
+
+module.exports = { createUser, checkUserExistence, verifyUser }

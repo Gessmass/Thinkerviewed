@@ -1,12 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Logo from "../assets/images/Logo.png"
 import ConnectionPopup from "./ConnectionPopup"
 import Cookies from "js-cookie"
+import { Link, useNavigate } from "react-router-dom"
 
 function Navbar() {
+  const idConnectedUser = Cookies.get("userData")
+
   const [isOpen, setIsOpen] = useState(false)
   const [isConnected, setIsConnected] = useState(false)
   const [displayPopup, setDisplayPopup] = useState(false)
+  const navigate = useNavigate()
+  const [trigger, setTrigger] = useState(false)
+
+  useEffect(() => {
+    if (idConnectedUser) {
+      setIsConnected(true)
+    }
+  }, [trigger])
 
   const toggleDropdownMenu = () => {
     setIsOpen(!isOpen)
@@ -14,16 +25,14 @@ function Navbar() {
 
   const closePopup = () => {
     setDisplayPopup(false)
-    if (isConnected === false) {
-      setIsConnected(true)
-    }
   }
 
   const handleDisconnect = () => {
     setIsConnected(false)
     Cookies.remove("authToken")
-    Cookies.remove("connectedUser")
+    Cookies.remove("userData")
     console.info("Utilisateur déconnecté")
+    navigate("/")
   }
 
   return (
@@ -36,7 +45,7 @@ function Navbar() {
       </label>
       <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
         <nav>
-          {isConnected ? (
+          {isConnected === true ? (
             <img
               src={`${
                 import.meta.env.VITE_BACKEND_URL
@@ -50,12 +59,20 @@ function Navbar() {
               Se Connecter
             </button>
           )}
-          <a href="#home">Accueil</a>
-          <a href="#services">Catégories</a>
-          <a href="#contact">Contact</a>
-          <a href="#contact">À Propos</a>
+          <Link className="link" to="/">
+            Accueil
+          </Link>
+          <Link className="link" to="/Categories">
+            Catégories
+          </Link>
+          <Link className="link" to="/Contact">
+            Contact
+          </Link>
+          <Link className="link" to="/About">
+            À Propos
+          </Link>
         </nav>
-        {isConnected && (
+        {isConnected === true && (
           <button id="disconnect" onClick={handleDisconnect}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +93,10 @@ function Navbar() {
       </div>
       <img src={Logo} alt="logo" id="logoNavbar" />
       {displayPopup && (
-        <ConnectionPopup closePopup={closePopup} isConnected={isConnected} />
+        <ConnectionPopup
+          closePopup={closePopup}
+          onTrigger={() => setTrigger(true)}
+        />
       )}
     </div>
   )
