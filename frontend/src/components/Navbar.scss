@@ -3,12 +3,8 @@
   height: 100px;
   background-color: $background-Navbar;
   border-bottom: 2px solid #ffffff;
-  button {
-    position: absolute;
-    right: 30px;
-    top: 30px;
-  }
-  img {
+  transition: 2s;
+  #logoNavbar {
     width: 198px;
     height: 42px;
     margin: 20px 0 10px 15px;
@@ -77,6 +73,22 @@
         &:active {
           transform: scale(1.1);
           border-color: $purple-color;
+        }
+      }
+      #seConnecter {
+        width: 100px;
+        height: 30px;
+        border-radius: 50px;
+        border: 1px solid white;
+        color: white;
+        background-color: rgb(98, 98, 98);
+        font-family: $main-font;
+        transition: 0.2s;
+        font-size: 10px;
+        &:hover {
+          background-color: $purple-color;
+          transition: 0.2s;
+          transform: scale(1.1);
         }
       }
     }
