@@ -1,23 +1,20 @@
-import { useEffect, useState } from "react"
+import { useState, useContext } from "react"
 import Logo from "../assets/images/Logo.png"
 import ConnectionPopup from "./ConnectionPopup"
 import Cookies from "js-cookie"
 import { Link, useNavigate } from "react-router-dom"
+import { UserContext } from "../App"
 
 function Navbar() {
-  const idConnectedUser = Cookies.get("userData")
-
   const [isOpen, setIsOpen] = useState(false)
-  const [isConnected, setIsConnected] = useState(false)
+
   const [displayPopup, setDisplayPopup] = useState(false)
   const navigate = useNavigate()
-  const [trigger, setTrigger] = useState(false)
-
-  useEffect(() => {
-    if (idConnectedUser) {
-      setIsConnected(true)
-    }
-  }, [trigger])
+  // const [trigger, setTrigger] = useState(false)
+  const { connectedUser, setConnectedUser } = useContext(UserContext)
+  const [isConnected, setIsConnected] = useState(
+    localStorage.getItem("isConnected") === "true"
+  )
 
   const toggleDropdownMenu = () => {
     setIsOpen(!isOpen)
@@ -25,16 +22,22 @@ function Navbar() {
 
   const closePopup = () => {
     setDisplayPopup(false)
+    localStorage.setItem("isConnected", "true")
+    setIsConnected(true)
+    setIsOpen(false)
   }
 
   const handleDisconnect = () => {
     setIsConnected(false)
+    localStorage.setItem("isConnected", "false")
     Cookies.remove("authToken")
-    Cookies.remove("userData")
     console.info("Utilisateur déconnecté")
     navigate("/")
+    setIsOpen(false)
+    setConnectedUser(null)
   }
 
+  console.info(isConnected, connectedUser)
   return (
     <div className="navbarBody">
       <label className="burger" htmlFor="burger">
@@ -46,14 +49,17 @@ function Navbar() {
       <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
         <nav>
           {isConnected === true ? (
-            <img
-              src={`${
-                import.meta.env.VITE_BACKEND_URL
-              }/assets/images/testUserPic.jpg
+            <>
+              <p id="usernameMenu">{connectedUser.username}</p>
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/${
+                  connectedUser.profil_picture
+                }
             `}
-              alt="profilPicture"
-              id="profilPictureNavbar"
-            />
+                alt="profilPicture"
+                id="profilPictureNavbar"
+              />
+            </>
           ) : (
             <button id="seConnecter" onClick={() => setDisplayPopup(true)}>
               Se Connecter
@@ -91,11 +97,14 @@ function Navbar() {
           </button>
         )}
       </div>
-      <img src={Logo} alt="logo" id="logoNavbar" />
+      <Link to="/">
+        <img src={Logo} alt="logo" id="logoNavbar" />
+      </Link>
       {displayPopup && (
         <ConnectionPopup
           closePopup={closePopup}
-          onTrigger={() => setTrigger(true)}
+          // onTrigger={() => setTrigger(true)}
+          // onLoginSuccess={handleLoginSuccess}
         />
       )}
     </div>
