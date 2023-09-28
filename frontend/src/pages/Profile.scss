@@ -1,0 +1,161 @@
+#mainDivProfile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  #firstContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    // border: 1px solid blue;
+  }
+  #secondContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    gap: 15%;
+    // border: 1px solid red;
+    #titleProgressDiv {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      width: 100%;
+    }
+    .progressBar {
+      color: white;
+    }
+  }
+  #thirdContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 20%;
+    // border: 1px solid purple;
+    #titleMedalsDiv {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      width: 100%;
+    }
+    #medalsRackDiv {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      gap: 10px;
+      #medalsImagesContainer {
+        display: flex;
+        width: 100%;
+        height: 60%;
+        // border: solid 1px yellow;
+        img {
+          width: 65px;
+          height: 65px;
+        }
+      }
+      #medalsNumberContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 20%;
+        // border: solid 1px pink;
+        .medalsNumberDisplay {
+          display: flex;
+          justify-content: center;
+          align-items: baseline;
+          //   border:1px solid blue;
+          width: 100%;
+          span {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  #lastContentDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    gap: 15px;
+    // border: 1px solid silver;
+    #titleLastDivProfile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      width: 100%;
+    }
+    #inputDisplayInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40%;
+      height: 35%;
+      font-family: $main-font;
+      font-size: 14px;
+      span {
+        color: #fff;
+      }
+      input {
+        display: flex;
+        text-align: center;
+        background-color: #ffffff9a;
+        border-radius: 6px;
+        border: 1px solid #fff;
+        height: 3vh;
+        font-family: $main-font;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+  }
+  #buttonModifyProfileDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      background: none;
+      font-family: $main-font;
+      color: #fff;
+      border-radius: 6px;
+      border: 1px solid #fff;
+      padding: 2px;
+      width: 30%;
+    }
+  }
+  #newPasswordProfileDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      background: none;
+      font-family: $main-font;
+      color: #fff;
+      border-radius: 6px;
+      border: 1px solid #fff;
+      padding: 2px;
+      width: 50%;
+    }
+  }
+}
