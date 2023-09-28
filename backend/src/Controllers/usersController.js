@@ -2,6 +2,7 @@ const {
   addUser,
   findUserByUsernameOrEmail,
   verifyUsernameForLogin,
+  modifyProfile,
 } = require("../models/usersModel.js")
 
 const validateUser = require("../validators/userValidator.js")
@@ -20,6 +21,15 @@ const createUser = async (req, res) => {
     const hashedPassword = await hashPassword(req.body.password)
 
     const result = await addUser({ ...req.body, password: hashedPassword })
+    res.status(201).send(result)
+  } catch (err) {
+    res.sendStatus(500)
+  }
+}
+
+const updateUser = async (req, res) => {
+  try {
+    const result = await modifyProfile({ ...req.body })
     res.status(201).send(result)
   } catch (err) {
     res.sendStatus(500)
@@ -63,4 +73,4 @@ const verifyUser = (req, res, next) => {
     })
 }
 
-module.exports = { createUser, checkUserExistence, verifyUser }
+module.exports = { createUser, checkUserExistence, verifyUser, updateUser }
