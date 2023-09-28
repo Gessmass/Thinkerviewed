@@ -9,24 +9,31 @@ import Register from "./pages/Register"
 import Profile from "./pages/Profile"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
+import React, { createContext, useState } from "react"
+
+export const UserContext = createContext()
 
 function App() {
+  const [connectedUser, setConnectedUser] = useState(null)
+
   return (
     <Router>
-      <Navbar />
-      <div className="page-container">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/QuizzSelon" element={<QuizzSelon />} />
-          <Route path="/QuizzCultureT" element={<QuizzCultureT />} />
-          <Route path="/Categories" element={<Categories />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/Profile" element={<Profile />} />
-        </Routes>
-      </div>
-      <Footer />
+      <UserContext.Provider value={{ connectedUser, setConnectedUser }}>
+        <Navbar />
+        <div className="page-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Contact" element={<Contact />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/QuizzSelon" element={<QuizzSelon />} />
+            <Route path="/QuizzCultureT" element={<QuizzCultureT />} />
+            <Route path="/Categories" element={<Categories />} />
+            <Route path="/Register" element={<Register />} />
+            <Route path="/Profile" element={<Profile />} />
+          </Routes>
+        </div>
+        <Footer />
+      </UserContext.Provider>
     </Router>
   )
 }
