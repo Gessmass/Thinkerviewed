@@ -14,6 +14,20 @@ const addUser = async (user) => {
     console.error(err)
   }
 }
+const modifyProfile = async (username, email, id) => {
+  // const { username, email, id } = user
+
+  try {
+    const [result] = await db.query(
+      "UPDATE users (username, email_adress) VALUES (?,?) WHERE users.id = ?",
+      [username, email, id]
+    )
+
+    return { result }
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 const findUserByUsernameOrEmail = async (username, email) => {
   try {
@@ -56,4 +70,5 @@ module.exports = {
   findUserByUsernameOrEmail,
   findUserByID,
   verifyUsernameForLogin,
+  modifyProfile,
 }
