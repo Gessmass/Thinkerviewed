@@ -1,5 +1,6 @@
 import axios from "axios"
-import { useState } from "react"
+import React, { useState, useContext } from "react"
+import { UserContext } from "../App"
 import Cookies from "js-cookie"
 import Logo from "../assets/images/Logo.png"
 
@@ -7,6 +8,7 @@ export default function ConnectionPopup({ closePopup, onTrigger }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [displayError, setDisplayError] = useState(false)
+  const { setConnectedUser } = useContext(UserContext)
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -20,13 +22,11 @@ export default function ConnectionPopup({ closePopup, onTrigger }) {
           console.info("Utilisateur connecté")
           const token = res.data.token
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
-          Cookies.set("userData", JSON.stringify(res.data.user), {
-            sameSite: "strict",
-          })
           setUsername("")
           setPassword("")
           closePopup()
           onTrigger()
+          setConnectedUser(res.data.user)
         }
       })
       .catch((err) => {
