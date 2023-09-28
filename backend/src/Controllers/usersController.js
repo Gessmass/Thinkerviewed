@@ -6,14 +6,15 @@ const {
 } = require("../models/usersModel.js")
 
 const validateUser = require("../validators/userValidator.js")
-const { hashPassword } = require("../helper/argonHelper.js")
+const {
+  hashPassword,
+  giveTokenAfterRegister,
+} = require("../helper/argonHelper.js")
 
 const createUser = async (req, res) => {
-  // const { username, email, password } = req.body
-  // console.log(req.body)
-
   try {
     const errors = validateUser(req.body)
+
     if (errors) {
       return res.status(400).send(errors)
     }
@@ -21,15 +22,23 @@ const createUser = async (req, res) => {
     const hashedPassword = await hashPassword(req.body.password)
 
     const result = await addUser({ ...req.body, password: hashedPassword })
-    res.status(201).send(result)
+
+    if (typeof result.id === "object") {
+      const token = giveTokenAfterRegister(result.id)
+      res.status(201).send({ token, user: result })
+    } else {
+      // Si result.id n'est pas un objet, renvoyez une erreur appropriée
+      return res.status(500).send("Erreur lors de la création du jeton JWT.")
+    }
   } catch (err) {
     res.sendStatus(500)
   }
 }
 
 const updateUser = async (req, res) => {
+  const user = req.body
   try {
-    const result = await modifyProfile({ ...req.body })
+    const result = await modifyProfile(user)
     res.status(201).send(result)
   } catch (err) {
     res.sendStatus(500)
@@ -37,7 +46,7 @@ const updateUser = async (req, res) => {
 }
 
 const checkUserExistence = async (req, res) => {
-  const { username, email } = req.body
+  const { username, email } = req.query
 
   try {
     // Recherchez un utilisateur par nom d'utilisateur ou adresse e-mail

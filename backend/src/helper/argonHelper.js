@@ -38,6 +38,21 @@ const verifyPassword = (req, res) => {
     })
 }
 
+const giveTokenAfterRegister = (payload) => {
+  try {
+    // console.log("payload", payload)
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "12h",
+    })
+    // console.log("token", token)
+    return token
+  } catch (err) {
+    console.error(err)
+    // res.sendStatus(500)
+    throw new Error("Error generating token")
+  }
+}
+
 const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization")
@@ -70,4 +85,5 @@ module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  giveTokenAfterRegister,
 }

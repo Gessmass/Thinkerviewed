@@ -1,5 +1,8 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
+import { UserContext } from "../App"
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -8,6 +11,8 @@ const Register = () => {
   const [verifyPassword, setVerifyPassword] = useState("")
   const [alreadyExist, setAlreadyExist] = useState(false)
   const [notSamePassword, setNotSamePassword] = useState(false)
+  const { setConnectedUser } = useContext(UserContext)
+  const navigate = useNavigate()
 
   const checkPasswords = () => {
     if (firstPassword === verifyPassword) {
@@ -34,6 +39,13 @@ const Register = () => {
             })
             .then((res) => {
               console.info("Utilisateur créé avec succès !", res.data)
+              setConnectedUser(res.data.user)
+              const token = res.data.token
+              Cookies.set("authToken", token, {
+                expires: 0.5,
+                sameSite: "strict",
+              })
+              navigate("/Profile")
             })
             .catch((err) => {
               console.error(

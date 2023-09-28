@@ -4,24 +4,26 @@ const addUser = async (user) => {
   const { username, email, password } = user
 
   try {
-    const [result] = await db.query(
+    const result = await db.query(
       "INSERT INTO users (username, email_adress, hashed_password, registration_date) VALUES (?,?,?, NOW())",
       [username, email, password]
     )
+    const userId = result[0].insertId
 
-    return { id: result.insertID, username, email }
+    return { id: userId, username, email }
   } catch (err) {
     console.error(err)
+    throw new Error("Erreur lors de la création de l'utilisateur")
   }
 }
 
-const modifyProfile = async (username, email, id) => {
+const modifyProfile = async (user) => {
   // const { username, email, id } = user
 
   try {
     const [result] = await db.query(
-      "UPDATE users (username, email_adress) VALUES (?,?) WHERE users.id = ?",
-      [username, email, id]
+      "UPDATE users SET username = ?, email_adress = ?  WHERE id = ?",
+      [user.username, user.email, user.id]
     )
 
     return { result }

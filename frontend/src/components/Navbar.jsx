@@ -71,6 +71,9 @@ function Navbar() {
           <Link className="link" to="/About">
             À Propos
           </Link>
+          <Link className="link" to="/Register">
+            S'inscrire
+          </Link>
         </nav>
         {isConnected === true && (
           <button id="disconnect" onClick={handleDisconnect}>
