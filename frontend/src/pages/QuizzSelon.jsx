@@ -1,5 +1,11 @@
+import QuestionCard from "../components/QuestionCard"
+
 const QuizzSelon = () => {
-  return <h1>Je suis dans QuizzSelon</h1>
+  return (
+    <div id="quizSelonContent">
+      <QuestionCard />
+    </div>
+  )
 }
 
 export default QuizzSelon
