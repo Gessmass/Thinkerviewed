@@ -4,7 +4,7 @@ import { UserContext } from "../App"
 import Cookies from "js-cookie"
 import Logo from "../assets/images/Logo.png"
 
-export default function ConnectionPopup({ closePopup, onTrigger }) {
+export default function ConnectionPopup({ closePopup }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [displayError, setDisplayError] = useState(false)
@@ -25,8 +25,8 @@ export default function ConnectionPopup({ closePopup, onTrigger }) {
           setUsername("")
           setPassword("")
           closePopup()
-          onTrigger()
           setConnectedUser(res.data.user)
+          // localStorage.setItem("isConnected", "true")
         }
       })
       .catch((err) => {
@@ -72,8 +72,10 @@ export default function ConnectionPopup({ closePopup, onTrigger }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <p id={`mauvaisMotdepasse ${displayError ? "open" : ""}`}>
-          Mot de passe oublié ?
+
+        <p id="motdepasseoublie">Mot de passe oublié ?</p>
+        <p className={`mauvaisMotdepasse ${displayError ? "open" : ""}`}>
+          Mauvais pseudo ou mot de passe
         </p>
         <div id="buttonConnection">
           <button onClick={handleLogin}>Entrer</button>
