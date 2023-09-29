@@ -1,25 +1,47 @@
-export default function QuestionCard() {
+import { useState, useEffect } from "react"
+import axios from "axios"
+
+export default function QuestionCard({
+  question,
+  timestamp,
+  badAnswer,
+  questionId,
+}) {
+  const [answers, setAnswers] = useState([])
+
+  useEffect(() => {
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/questionnary/answers/${questionId}`
+      )
+      .then((res) => {
+        setAnswers(res.data)
+      })
+      .catch((err) => {
+        console.info("Erreur lors de la récupération des réponses", err)
+      })
+  }, [])
+
   return (
     <div id="questionCardContent">
       <div id="questionInCard">
-        <h3>Question</h3>
+        <h3>{question}</h3>
       </div>
       <div id="answerArea">
         <div id="answerTiles">
-          <div id="tile1" className="tile">
-            <p id="answer1">Réponse 1</p>
-          </div>
-          <div id="tile2" className="tile">
-            <p id="answer2">Réponse 2</p>
-          </div>
-          <div id="tile3" className="tile">
-            <p id="answer3">Réponse 3</p>
-          </div>
-          <div id="tile4" className="tile">
-            <p id="answer4">Réponse 4</p>
-          </div>
+          {answers.map((answer) => (
+            <div key={answer.id} className="tile">
+              <p className="answer">{answer.answer_text}</p>
+            </div>
+          ))}
         </div>
-        <div id="timeCode">1:20:35</div>
+        <div id="badAnswer">
+          <p>{badAnswer}</p>
+        </div>
+        <div id="timeCode">
+          <div id="pointRouge"></div>
+          {timestamp}
+        </div>
       </div>
     </div>
   )
