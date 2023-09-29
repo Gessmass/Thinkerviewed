@@ -80,10 +80,24 @@ const verifyUsernameForLogin = async (username) => {
   }
 }
 
+const updateProfilPicture = async (users, profilpicturePath) => {
+  try {
+    const picture = await db.query(
+      "UPDATE Users SET profil_picture = ? WHERE id = ?",
+      [[profilpicturePath, users.id]]
+    )
+    // console.log(picture)
+    return picture
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 module.exports = {
   addUser,
   findUserByUsernameOrEmail,
   findUserByID,
   verifyUsernameForLogin,
   modifyProfile,
+  updateProfilPicture,
 }

@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
+import Cookies from "js-cookie"
 
 import Bronze from "../assets/images/Bronze.png"
 import Chocolate from "../assets/images/Chocolate.png"
@@ -10,16 +11,60 @@ import Gold from "../assets/images/Gold.png"
 
 const Profile = () => {
   const [isModifying, setIsModifying] = useState(false)
-
+  const [imageUrl, setImageUrl] = useState(null)
   const user = localStorage.getItem("user")
   const [connectedUser, setConnectedUser] = useState(
     user !== null ? JSON.parse(user) : null
   )
+
+  const userId = connectedUser.id
+  const tokenFromCookie = Cookies.get("authToken")
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
   console.info(setConnectedUser)
-  //   useEffect(() => {
-  //     const user = localStorage.getItem('user');
-  //     setConnectedUser(user !== null ? JSON.parse(user) : null);
-  // }, []);
+  // console.log("iduser", userId)
+
+  const handlePictureChange = (e) => {
+    const picture = e.target.files[0]
+
+    const formData = new FormData()
+
+    formData.append("myFile", picture)
+
+    setImageUrl(URL.createObjectURL(picture))
+
+    updateProfilPictureOnServer(userId, formData)
+  }
+
+  const updateProfilPictureOnServer = async (userId, formData) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:4242/user/users/${userId}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${tokenFromCookie}`,
+          },
+        }
+      )
+
+      return response.data
+    } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour de la photo de profil :",
+        error
+      )
+      throw error
+    }
+  }
+
+  useEffect(() => {
+    setImageUrl(
+      `${import.meta.env.VITE_BACKEND_URL}/${connectedUser.profil_picture}`
+    )
+  }, [connectedUser.profil_picture])
 
   const modifyProfile = () => {
     axios
@@ -29,10 +74,10 @@ const Profile = () => {
           username: connectedUser.username,
           email: connectedUser.email_adress,
           id: connectedUser.id,
+        },
+        {
+          headers,
         }
-        // {
-        //     headers
-        // }
       )
       .then((res) => {
         console.info("update user successfull", res.data)
@@ -48,7 +93,36 @@ const Profile = () => {
   return (
     <div id="mainDivProfile">
       <div id="firstContentDiv">
-        <div id="userIDDiv"></div>
+        <div id="userIDDiv">
+          <label htmlFor="buttonPicture">
+            {imageUrl !== null ? (
+              <img
+                src={imageUrl}
+                alt="your profile user picture"
+                name="myFile"
+                className="userPicture"
+                id="profilPictureForm"
+              />
+            ) : (
+              <img
+                className="userPicture"
+                src={`${import.meta.env.VITE_BACKEND_URL}/${
+                  connectedUser.profil_picture
+                }`}
+                alt="your profile user picture"
+              />
+            )}
+          </label>
+          <input
+            type="file"
+            id="buttonPicture"
+            accept="image/*"
+            onChange={(e) => {
+              handlePictureChange(e)
+            }}
+            style={{ display: "none" }}
+          />
+        </div>
       </div>
       <div id="secondContentDiv">
         <div id="titleProgressDiv">

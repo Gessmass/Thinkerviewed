@@ -1,8 +1,11 @@
+const fs = require("fs")
+
 const {
   addUser,
   findUserByUsernameOrEmail,
   verifyUsernameForLogin,
   modifyProfile,
+  updateProfilPicture,
 } = require("../models/usersModel.js")
 
 const validateUser = require("../validators/userValidator.js")
@@ -82,4 +85,47 @@ const verifyUser = (req, res, next) => {
     })
 }
 
-module.exports = { createUser, checkUserExistence, verifyUser, updateUser }
+const updateProfilPictureUser = async (req, res) => {
+  const users = req.body
+
+  // console.info(req.file)
+  // console.info(req.body)
+
+  users.id = parseInt(req.params.id, 10)
+
+  updateProfilPicture(
+    users,
+    `assets/images/profilPictures/${req.file.originalname}`
+  )
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        // Déplacez la photo après avoir effectué l'opération de mise à jour
+        fs.rename(
+          req.file.path,
+          `public/assets/images/profilPictures/${req.file.originalname}`,
+          (err) => {
+            if (err) {
+              console.error(err)
+              res.status(500).send("Error while moving the uploaded file")
+            } else {
+              res.sendStatus(204)
+            }
+          }
+        )
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+module.exports = {
+  createUser,
+  checkUserExistence,
+  verifyUser,
+  updateUser,
+  updateProfilPictureUser,
+}
