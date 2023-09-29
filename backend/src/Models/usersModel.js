@@ -10,7 +10,19 @@ const addUser = async (user) => {
     )
     const userId = result[0].insertId
 
-    return { id: userId, username, email }
+    // Effectuez une autre requête pour obtenir les données de la nouvelle ligne
+    const userData = await db.query("SELECT * FROM users WHERE id = ?", [
+      userId,
+    ])
+
+    // Assurez-vous que la requête a renvoyé au moins une ligne
+    if (userData && userData[0] && userData[0][0]) {
+      return userData[0][0] // Renvoie la première ligne de données
+    } else {
+      throw new Error(
+        "Erreur lors de la récupération des données de l'utilisateur"
+      )
+    }
   } catch (err) {
     console.error(err)
     throw new Error("Erreur lors de la création de l'utilisateur")

@@ -24,7 +24,6 @@ const verifyPassword = (req, res) => {
           expiresIn: "12h",
         })
         delete req.user.hashed_password
-        delete req.user.email_adress
         delete req.user.registration_date
         res.send({ token, user: req.user })
       } else {

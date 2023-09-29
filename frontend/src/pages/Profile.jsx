@@ -1,7 +1,5 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import axios from "axios"
-import { UserContext } from "../App"
-// , useEffect
 
 import Bronze from "../assets/images/Bronze.png"
 import Chocolate from "../assets/images/Chocolate.png"
@@ -11,13 +9,17 @@ import Silver from "../assets/images/Silver.png"
 import Gold from "../assets/images/Gold.png"
 
 const Profile = () => {
-  //   const [user, setUser] = useState([])
   const [isModifying, setIsModifying] = useState(false)
-  //   const headers = {
-  //     Authorization: `Bearer ${tokenFromCookie}`
-  //   }
 
-  const { connectedUser, setConnectedUser } = useContext(UserContext)
+  const user = localStorage.getItem("user")
+  const [connectedUser, setConnectedUser] = useState(
+    user !== null ? JSON.parse(user) : null
+  )
+  console.info(setConnectedUser)
+  //   useEffect(() => {
+  //     const user = localStorage.getItem('user');
+  //     setConnectedUser(user !== null ? JSON.parse(user) : null);
+  // }, []);
 
   const modifyProfile = () => {
     axios
@@ -41,7 +43,8 @@ const Profile = () => {
       })
   }
 
-  // console.log("userloggedd", connectedUser)
+  // console.log("profile connected user", connectedUser)
+
   return (
     <div id="mainDivProfile">
       <div id="firstContentDiv">
@@ -108,24 +111,12 @@ const Profile = () => {
                 placeholder="Pseudo"
                 name="username"
                 value={connectedUser.username}
-                onChange={(e) =>
-                  setConnectedUser({
-                    ...connectedUser,
-                    [e.target.name]: e.target.value,
-                  })
-                }
               />
               <input
                 type="email"
                 placeholder="E-mail"
                 name="email"
-                value={connectedUser.email}
-                onChange={(e) =>
-                  setConnectedUser({
-                    ...connectedUser,
-                    [e.target.name]: e.target.value,
-                  })
-                }
+                value={connectedUser.email_adress}
               />
             </>
           ) : (

@@ -1,4 +1,15 @@
+import { useEffect, useState } from "react"
+
 const Contact = () => {
+  const [isConnected, setIsConnected] = useState(false)
+
+  useEffect(() => {
+    const user = localStorage.getItem("user")
+    setIsConnected(user !== null)
+  }, [])
+
+  console.info(isConnected)
+
   return (
     <div id="mainDivContactUs">
       <div id="topDivContactUs">

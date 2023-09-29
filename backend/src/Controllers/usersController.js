@@ -23,13 +23,13 @@ const createUser = async (req, res) => {
 
     const result = await addUser({ ...req.body, password: hashedPassword })
 
-    if (typeof result.id === "object") {
-      const token = giveTokenAfterRegister(result.id)
-      res.status(201).send({ token, user: result })
-    } else {
-      // Si result.id n'est pas un objet, renvoyez une erreur appropriée
-      return res.status(500).send("Erreur lors de la création du jeton JWT.")
-    }
+    // if (typeof result.id === "object") {
+    const token = giveTokenAfterRegister(result)
+    res.status(201).send({ token, user: result })
+    // } else {
+    //   // Si result.id n'est pas un objet, renvoyez une erreur appropriée
+    //   return res.status(500).send("Erreur lors de la création du jeton JWT.")
+    // }
   } catch (err) {
     res.sendStatus(500)
   }
