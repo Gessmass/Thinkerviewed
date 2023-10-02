@@ -30,7 +30,7 @@ CREATE TABLE `Answers` (
   PRIMARY KEY (`id`,`Questions_id`),
   KEY `fk_Answers_Questions_idx` (`Questions_id`),
   CONSTRAINT `fk_Answers_Questions` FOREIGN KEY (`Questions_id`) REFERENCES `Questions` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `Answers` (
 
 LOCK TABLES `Answers` WRITE;
 /*!40000 ALTER TABLE `Answers` DISABLE KEYS */;
+INSERT INTO `Answers` VALUES (1,'L\'énergie solaire',0,1),(2,'La combustion des combustibles fossiles',1,1),(3,'Les éoliennes',0,1),(4,'Les marrées',0,1),(5,'Les éclipses solaires',0,2),(6,'Les tremblements de terre',0,2),(7,'Les ouragans',1,2),(8,'Les éruptions volcaniques',0,2),(9,'L\'Amérique du Nord',0,3),(10,'L\'Europe',0,3),(11,'L\'Afrique',1,3),(12,'L\'Asie',0,3),(13,'L\'industrie du jeu vidéo',0,4),(14,'L\'industrie de la mode',0,4),(15,'L\'industrie alimentaire',0,4),(16,'L\'industrie de l\'énergie',1,4);
 /*!40000 ALTER TABLE `Answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +89,7 @@ CREATE TABLE `Questions` (
   PRIMARY KEY (`id`,`Questionnary_id`),
   KEY `fk_Questions_Questionnary1_idx` (`Questionnary_id`),
   CONSTRAINT `fk_Questions_Questionnary1` FOREIGN KEY (`Questionnary_id`) REFERENCES `Questionnary` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,6 +98,7 @@ CREATE TABLE `Questions` (
 
 LOCK TABLES `Questions` WRITE;
 /*!40000 ALTER TABLE `Questions` DISABLE KEYS */;
+INSERT INTO `Questions` VALUES (1,'Quelle est la principale source de gaz à effet de serre ?','1:20:20','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet odio quam. Ut non congue risus, nec condimentum nulla. Aenean ac feugiat neque, quis tincidunt lacus. Integer semper lectus vitae interdum sagittis. Aliquam nec aliquet non.','pending',2),(2,'Quel phénomène naturel est exacerbé par le changement climatique ?','1:30:40','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet odio quam. Ut non congue risus, nec condimentum nulla. Aenean ac feugiat neque, quis tincidunt lacus. Integer semper lectus vitae interdum sagittis. Aliquam nec aliquet non.','pending',2),(3,'Quel continent est le plus affecté par le changement climatique ?\nQuel continent est le plus affecté par le changement climatique ?\n','1:20:34','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet odio quam. Ut non congue risus, nec condimentum nulla. Aenean ac feugiat neque, quis tincidunt lacus. Integer semper lectus vitae interdum sagittis. Aliquam nec aliquet non.','pending',1),(4,'Quelle industrie est la plus grande émettrice de gaz à effet de serre ?','1:20:34','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit amet odio quam. Ut non congue risus, nec condimentum nulla. Aenean ac feugiat neque, quis tincidunt lacus. Integer semper lectus vitae interdum sagittis. Aliquam nec aliquet non.','pending',1);
 /*!40000 ALTER TABLE `Questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +119,7 @@ CREATE TABLE `Users` (
   `registration_date` datetime NOT NULL,
   `score` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +128,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (1,'Romain','assets/images/testUserPic.jpg',0,'rom@gitan.com','$argon2id$v=19$m=65536,t=5,p=1$wKFf+lyxo60LYWNuHc9sow$aJJGP3oooUzvpXhQt1aMPEJoB7maL37wge0V+sUNi3A','2023-09-26 16:34:15',0);
+INSERT INTO `Users` VALUES (1,'Romain','assets/images/testUserPic.jpg',0,'rom@gitan.com','$argon2id$v=19$m=65536,t=5,p=1$wKFf+lyxo60LYWNuHc9sow$aJJGP3oooUzvpXhQt1aMPEJoB7maL37wge0V+sUNi3A','2023-09-26 16:34:15',0),(2,'Gessmass','assets/images/testUserPic.jpg',0,'justrideforlife@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$M1jrdyguiICAHwaH6VgYbQ$NI1dFLQ4UyYNHWTlhxLEbG7a/LUXLj6L8RGOPiwH0x8','2023-09-27 14:00:16',0);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-26 16:50:56
+-- Dump completed on 2023-10-02 14:38:26

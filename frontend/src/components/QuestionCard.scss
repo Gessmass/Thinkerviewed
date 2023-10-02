@@ -1,6 +1,5 @@
 #questionCardContent {
   height: fit-content;
-  min-height: 330px;
   border: 1px solid white;
   border-radius: 15px;
   width: 90%;
@@ -66,7 +65,9 @@
       }
     }
     #badAnswer {
-      display: none;
+      display: flex;
+      height: fit-content;
+      // border:1px solid blue;
       p {
         color: white;
         font-family: $main-font;

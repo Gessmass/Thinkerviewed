@@ -8,8 +8,9 @@ export default function QuestionCard({
   questionId,
 }) {
   const [answers, setAnswers] = useState([])
-  // const [selectedTile, setSelectedTile] = useState(null)
-  // const [answerIsCorrect, setAnswerIsCorrect] = useState(null)
+  const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [answerIsCorrect, setAnswerIsCorrect] = useState(null)
+  const [showBadAnswer, setShowBadAnswer] = useState(false)
 
   useEffect(() => {
     axios
@@ -24,48 +25,63 @@ export default function QuestionCard({
       })
   }, [])
 
-  const handleSelectedAnswer = (isCorrect, event) => {
-    const tiles = document.querySelectorAll(".tile")
-    tiles.forEach((tile) => tile.classList.remove("selected"))
-    event.currentTarget.closest(".tile").classList.add("selected")
+  const handleSelectedAnswer = (isCorrect, answerId) => {
+    if (selectedAnswer !== null) {
+      return
+    }
+
+    setSelectedAnswer(answerId)
 
     if (isCorrect === 1) {
-      event.currentTarget
-        .closest("#questionCardContent")
-        .classList.add("correct")
+      setAnswerIsCorrect(true)
+      // console.log("réponse correcte");
     } else {
-      event.currentTarget
-        .closest("#questionCardContent")
-        .classList.add("incorrect")
-      document.getElementById("badAnswer").style.display = "block"
+      setAnswerIsCorrect(false)
+      setShowBadAnswer(true)
+      // console.log("réponse fausse");
     }
   }
 
   return (
-    <div id="questionCardContent">
+    <div
+      id="questionCardContent"
+      className={
+        answerIsCorrect === true
+          ? "correct"
+          : answerIsCorrect === false
+          ? "incorrect"
+          : ""
+      }
+    >
       <div id="questionInCard">
         <h3>{question}</h3>
       </div>
       <div id="answerArea">
         <div id="answerTiles">
           {answers.map((answer) => (
-            <>
-              <label key={answer.id} className="tile">
-                <input
-                  type="radio"
-                  name="answer"
-                  onChange={(event) =>
-                    handleSelectedAnswer(answer.is_correct, event)
-                  }
-                />
-                <p className="answer">{answer.answer_text}</p>
-              </label>
-            </>
+            <label
+              key={answer.id}
+              className={`tile ${
+                selectedAnswer === answer.id ? "selected" : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="answer"
+                onChange={() =>
+                  handleSelectedAnswer(answer.is_correct, answer.id)
+                }
+                disabled={selectedAnswer !== null}
+              />
+              <p className="answer">{answer.answer_text}</p>
+            </label>
           ))}
         </div>
-        <div id="badAnswer">
-          <p id="textBadAnswer">{badAnswer}</p>
-        </div>
+        {showBadAnswer && (
+          <div id="badAnswer">
+            <p id="textBadAnswer">{badAnswer}</p>
+          </div>
+        )}
         <div id="timeCode">
           <div id="pointRouge"></div>
           {timestamp}
