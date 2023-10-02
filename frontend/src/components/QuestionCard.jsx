@@ -8,6 +8,8 @@ export default function QuestionCard({
   questionId,
 }) {
   const [answers, setAnswers] = useState([])
+  // const [selectedTile, setSelectedTile] = useState(null)
+  // const [answerIsCorrect, setAnswerIsCorrect] = useState(null)
 
   useEffect(() => {
     axios
@@ -22,6 +24,23 @@ export default function QuestionCard({
       })
   }, [])
 
+  const handleSelectedAnswer = (isCorrect, event) => {
+    const tiles = document.querySelectorAll(".tile")
+    tiles.forEach((tile) => tile.classList.remove("selected"))
+    event.currentTarget.closest(".tile").classList.add("selected")
+
+    if (isCorrect === 1) {
+      event.currentTarget
+        .closest("#questionCardContent")
+        .classList.add("correct")
+    } else {
+      event.currentTarget
+        .closest("#questionCardContent")
+        .classList.add("incorrect")
+      document.getElementById("badAnswer").style.display = "block"
+    }
+  }
+
   return (
     <div id="questionCardContent">
       <div id="questionInCard">
@@ -30,13 +49,22 @@ export default function QuestionCard({
       <div id="answerArea">
         <div id="answerTiles">
           {answers.map((answer) => (
-            <div key={answer.id} className="tile">
-              <p className="answer">{answer.answer_text}</p>
-            </div>
+            <>
+              <label key={answer.id} className="tile">
+                <input
+                  type="radio"
+                  name="answer"
+                  onChange={(event) =>
+                    handleSelectedAnswer(answer.is_correct, event)
+                  }
+                />
+                <p className="answer">{answer.answer_text}</p>
+              </label>
+            </>
           ))}
         </div>
         <div id="badAnswer">
-          <p>{badAnswer}</p>
+          <p id="textBadAnswer">{badAnswer}</p>
         </div>
         <div id="timeCode">
           <div id="pointRouge"></div>

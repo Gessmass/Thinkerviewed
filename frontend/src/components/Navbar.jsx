@@ -1,9 +1,9 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import Logo from "../assets/images/Logo.png"
 import ConnectionPopup from "./ConnectionPopup"
 import Cookies from "js-cookie"
 import { Link, useNavigate } from "react-router-dom"
-import { UserContext } from "../App"
+// import { UserContext } from "../App"
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -11,10 +11,12 @@ function Navbar() {
   const [displayPopup, setDisplayPopup] = useState(false)
   const navigate = useNavigate()
   // const [trigger, setTrigger] = useState(false)
-  const { connectedUser, setConnectedUser } = useContext(UserContext)
+  // const { connectedUser, setConnectedUser } = useContext(UserContext)
   const [isConnected, setIsConnected] = useState(
-    localStorage.getItem("isConnected") === "true"
+    localStorage.getItem("connectedUser") !== null
   )
+
+  const connectedUser = JSON.parse(localStorage.getItem("connectedUser"))
 
   const toggleDropdownMenu = () => {
     setIsOpen(!isOpen)
@@ -30,14 +32,15 @@ function Navbar() {
   const handleDisconnect = () => {
     setIsConnected(false)
     localStorage.setItem("isConnected", "false")
+    localStorage.removeItem("connectedUser")
     Cookies.remove("authToken")
     console.info("Utilisateur déconnecté")
     navigate("/")
     setIsOpen(false)
-    setConnectedUser(null)
   }
 
   console.info(isConnected, connectedUser)
+
   return (
     <div className="navbarBody">
       <label className="burger" htmlFor="burger">

@@ -22,8 +22,6 @@ const QuizzSelon = () => {
           )
           .then((res) => {
             setQuestions(res.data)
-
-            // const questionId = res.data.id
             //   axios
             //     .get(
             //       `${
@@ -50,8 +48,6 @@ const QuizzSelon = () => {
       })
   }, [])
 
-  useEffect(() => {}, [])
-
   return (
     <div id="quizSelonContent">
       <div id="selonDiv">
@@ -72,9 +68,10 @@ const QuizzSelon = () => {
         </div>
       </div>
       <div id="questionsContent">
-        {questions.map((question) => (
+        {questions.map((question, i) => (
           <QuestionCard
-            key={question.id}
+            key={i}
+            questionId={question.id}
             question={question.question_text}
             timestamp={question.timestamp_answer}
             badAnswer={question.text_bad_answer}
