@@ -5,6 +5,19 @@
   align-items: center;
   width: 100%;
   flex-direction: column;
+  #popupScoreContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    backdrop-filter: blur(5px);
+    background-color: rgba(63, 55, 55, 0.413);
+  }
   #selonDiv {
     background-color: white;
     width: 100%;

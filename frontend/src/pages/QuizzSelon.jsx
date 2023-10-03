@@ -1,11 +1,28 @@
 import QuestionCard from "../components/QuestionCard"
+import ScorePopup from "../components/ScorePopup"
 import { useState, useEffect } from "react"
 import axios from "axios"
 
 const QuizzSelon = () => {
   const [questionnaryData, setQuestionnaryData] = useState([])
   const [questions, setQuestions] = useState([])
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+  const [wrongAnswers, setWrongAnswers] = useState(0)
   // const [answers, setAnswers] = useState([])
+
+  const totalQuestions = questions.length
+
+  const handleAnswerCorrect = () => {
+    setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1)
+  }
+
+  const handleAnswerWrong = () => {
+    setWrongAnswers((prevWrongAnswers) => prevWrongAnswers + 1)
+  }
+
+  const scorePercentage = (correctAnswers / totalQuestions) * 100
+  const totalAnswers = correctAnswers + wrongAnswers
+  const showPopupScore = totalAnswers === totalQuestions
 
   useEffect(() => {
     axios
@@ -48,8 +65,23 @@ const QuizzSelon = () => {
       })
   }, [])
 
+  // console.log("mauvaise", wrongAnswers)
+  // console.log("totalreponse",totalAnswers)
+  // console.log("correcte",correctAnswers)
+  // console.log("score%",scorePercentage)
+  // console.log(totalQuestions)
+  // console.log(questions.length)
   return (
     <div id="quizSelonContent">
+      {showPopupScore && (
+        <div id="popupScoreContainer">
+          <ScorePopup
+            scorePercentage={scorePercentage}
+            correctAnswers={correctAnswers}
+            totalQuestions={totalQuestions}
+          />
+        </div>
+      )}
       <div id="selonDiv">
         <p>SELON...</p>
       </div>
@@ -75,6 +107,8 @@ const QuizzSelon = () => {
             question={question.question_text}
             timestamp={question.timestamp_answer}
             badAnswer={question.text_bad_answer}
+            onAnswerCorrect={handleAnswerCorrect}
+            onAnswerWrong={handleAnswerWrong}
             // answers={answers}
           />
         ))}

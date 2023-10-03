@@ -6,6 +6,8 @@ export default function QuestionCard({
   timestamp,
   badAnswer,
   questionId,
+  onAnswerCorrect,
+  onAnswerWrong,
 }) {
   const [answers, setAnswers] = useState([])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -34,10 +36,12 @@ export default function QuestionCard({
 
     if (isCorrect === 1) {
       setAnswerIsCorrect(true)
+      onAnswerCorrect(true)
       // console.log("réponse correcte");
     } else {
       setAnswerIsCorrect(false)
       setShowBadAnswer(true)
+      onAnswerWrong(true)
       // console.log("réponse fausse");
     }
   }
