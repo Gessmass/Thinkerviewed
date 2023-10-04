@@ -1,0 +1,101 @@
+#questionCardContent {
+  height: fit-content;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 90%;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  transition: max-height 0.3s ease-in-out;
+  &.correct {
+    border: 2px solid green;
+  }
+  &.incorrect {
+    border: 2px solid red;
+  }
+  #questionInCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40px;
+    height: fit-content;
+    width: 80%;
+    text-align: center;
+    h3 {
+      color: white;
+      font-family: $main-font;
+    }
+  }
+  #answerArea {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    #answerTiles {
+      display: flex;
+      width: 100%;
+      height: 200px;
+      flex-wrap: wrap;
+      .tile {
+        height: 50%;
+        width: 50%;
+        background: $background-Question;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 5px;
+        &.selected {
+          box-shadow: 1px 1px 30px 0px rgba(0, 0, 0, 0.86) inset;
+        }
+        p {
+          color: white;
+          font-family: $main-font;
+          font-size: 15px;
+        }
+      }
+    }
+    #badAnswer {
+      display: flex;
+      height: fit-content;
+      // border:1px solid blue;
+      p {
+        color: white;
+        font-family: $main-font;
+        font-size: 13px;
+      }
+    }
+    #timeCode {
+      background-color: white;
+      border-radius: 10px;
+      width: 80px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: $main-font;
+      font-size: 15px;
+      gap: 6px;
+      display: none;
+      #pointRouge {
+        background: #a31919;
+        height: 13px;
+        width: 13px;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+input[type="radio"] {
+  display: none;
+}

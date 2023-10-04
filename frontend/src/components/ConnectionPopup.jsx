@@ -1,6 +1,5 @@
 import axios from "axios"
-import React, { useState, useContext } from "react"
-import { UserContext } from "../App"
+import React, { useState } from "react"
 import Cookies from "js-cookie"
 import Logo from "../assets/images/Logo.png"
 
@@ -8,7 +7,6 @@ export default function ConnectionPopup({ closePopup }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [displayError, setDisplayError] = useState(false)
-  const { setConnectedUser } = useContext(UserContext)
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -25,8 +23,8 @@ export default function ConnectionPopup({ closePopup }) {
           setUsername("")
           setPassword("")
           closePopup()
-          setConnectedUser(res.data.user)
-          // localStorage.setItem("isConnected", "true")
+          const user = res.data.user
+          localStorage.setItem("connectedUser", JSON.stringify(user))
         }
       })
       .catch((err) => {
