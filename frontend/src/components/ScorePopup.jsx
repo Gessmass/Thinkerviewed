@@ -152,7 +152,9 @@ export default function QuestionCard({
       </div>
       <div id="randomQuizz"></div>
       <div id="buttonDivScore">
-        <button type="button">+ DE THÈMES</button>
+        <Link className="link" to="/Categories">
+          <button type="button">+ DE THÈMES</button>
+        </Link>
         <Link className="link" to="/">
           <button type="button">RETOUR À L’ACCUEIL</button>
         </Link>
