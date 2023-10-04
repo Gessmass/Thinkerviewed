@@ -1,6 +1,7 @@
 import QuestionCard from "../components/QuestionCard"
 import ScorePopup from "../components/ScorePopup"
 import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
 import axios from "axios"
 
 const QuizzSelon = () => {
@@ -14,7 +15,7 @@ const QuizzSelon = () => {
   )
 
   // const [answers, setAnswers] = useState([])
-
+  const { id } = useParams()
   const totalQuestions = questions.length
 
   const handleAnswerCorrect = () => {
@@ -34,7 +35,7 @@ const QuizzSelon = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/questionnary/2`)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/questionnary/${id}`)
       .then((res) => {
         setQuestionnaryData(res.data)
 

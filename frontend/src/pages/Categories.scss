@@ -1,0 +1,114 @@
+#mainDivCat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $main-font;
+  gap: 20px;
+  #titleCat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #fff;
+  }
+  #searchBarCat {
+    input {
+      padding: 5px;
+      border: none;
+      border-radius: 15px;
+      background-color: #d9d9d9;
+    }
+    img {
+      transform: translate(-130%, 30%);
+    }
+  }
+  #themesCat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    width: 90%;
+    #titleThemes {
+      border-bottom: 1px #fff solid;
+      span {
+        color: #fff;
+      }
+    }
+    #buttonsThemes {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      gap: 10px;
+      #lignOneThemes,
+      #lignTwoThemes,
+      #lignThreeThemes {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: 5px;
+        button {
+          text-align: center;
+          border: none;
+          border-radius: 6px;
+          background-color: #d9d9d9;
+          padding: 5px;
+          width: 30%;
+          height: 6vh;
+          font-family: $main-font;
+          &.active {
+            background-color: #878787;
+          }
+        }
+      }
+    }
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    #resultDisplay {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      gap: 5px;
+      // border:solid 1px red;
+      #protagonistName {
+        span {
+          text-align: center;
+          color: #fff;
+        }
+      }
+      #miniaturePic {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #fff;
+        border-radius: 6px;
+        img {
+          width: 298px;
+          height: 168.95px;
+        }
+      }
+      #titleTopic {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          text-align: center;
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
