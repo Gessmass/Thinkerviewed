@@ -6,6 +6,9 @@ export default function QuestionCard({
   timestamp,
   badAnswer,
   questionId,
+  onAnswerCorrect,
+  onAnswerWrong,
+  setUserAnswer,
 }) {
   const [answers, setAnswers] = useState([])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -25,19 +28,21 @@ export default function QuestionCard({
       })
   }, [])
 
-  const handleSelectedAnswer = (isCorrect, answerId) => {
+  const handleSelectedAnswer = (isCorrect, answerId, answerIndex) => {
     if (selectedAnswer !== null) {
       return
     }
-
+    setUserAnswer(answerIndex, isCorrect)
     setSelectedAnswer(answerId)
 
     if (isCorrect === 1) {
       setAnswerIsCorrect(true)
+      onAnswerCorrect(true)
       // console.log("réponse correcte");
     } else {
       setAnswerIsCorrect(false)
       setShowBadAnswer(true)
+      onAnswerWrong(true)
       // console.log("réponse fausse");
     }
   }
@@ -58,7 +63,7 @@ export default function QuestionCard({
       </div>
       <div id="answerArea">
         <div id="answerTiles">
-          {answers.map((answer) => (
+          {answers.map((answer, index) => (
             <label
               key={answer.id}
               className={`tile ${
@@ -69,7 +74,7 @@ export default function QuestionCard({
                 type="radio"
                 name="answer"
                 onChange={() =>
-                  handleSelectedAnswer(answer.is_correct, answer.id)
+                  handleSelectedAnswer(answer.is_correct, answer.id, index)
                 }
                 disabled={selectedAnswer !== null}
               />
