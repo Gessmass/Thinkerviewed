@@ -24,7 +24,6 @@ const verifyPassword = (req, res) => {
           expiresIn: "12h",
         })
         delete req.user.hashed_password
-        delete req.user.email_adress
         delete req.user.registration_date
         res.send({ token, user: req.user })
       } else {
@@ -36,6 +35,21 @@ const verifyPassword = (req, res) => {
       console.error(err)
       res.sendStatus(500)
     })
+}
+
+const giveTokenAfterRegister = (payload) => {
+  try {
+    // console.log("payload", payload)
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "12h",
+    })
+    // console.log("token", token)
+    return token
+  } catch (err) {
+    console.error(err)
+    // res.sendStatus(500)
+    throw new Error("Error generating token")
+  }
 }
 
 const verifyToken = (req, res, next) => {
@@ -70,4 +84,5 @@ module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
+  giveTokenAfterRegister,
 }

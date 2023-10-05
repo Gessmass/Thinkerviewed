@@ -22,6 +22,7 @@ export default function ConnectionPopup({ closePopup }) {
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
           setUsername("")
           setPassword("")
+          // console.log(user)
           closePopup()
           const user = res.data.user
           localStorage.setItem("connectedUser", JSON.stringify(user))

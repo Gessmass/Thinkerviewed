@@ -1,5 +1,7 @@
-import { useState } from "react"
 import axios from "axios"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
 
 const Register = () => {
   const [email, setEmail] = useState("")
@@ -8,6 +10,7 @@ const Register = () => {
   const [verifyPassword, setVerifyPassword] = useState("")
   const [alreadyExist, setAlreadyExist] = useState(false)
   const [notSamePassword, setNotSamePassword] = useState(false)
+  const navigate = useNavigate()
 
   const checkPasswords = () => {
     if (firstPassword === verifyPassword) {
@@ -34,6 +37,14 @@ const Register = () => {
             })
             .then((res) => {
               console.info("Utilisateur créé avec succès !", res.data)
+              const token = res.data.token
+              Cookies.set("authToken", token, {
+                expires: 0.5,
+                sameSite: "strict",
+              })
+              const user = res.data.user
+              localStorage.setItem("user", JSON.stringify(user))
+              navigate("/Profile")
             })
             .catch((err) => {
               console.error(

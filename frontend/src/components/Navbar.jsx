@@ -3,7 +3,6 @@ import Logo from "../assets/images/Logo.png"
 import ConnectionPopup from "./ConnectionPopup"
 import Cookies from "js-cookie"
 import { Link, useNavigate } from "react-router-dom"
-// import { UserContext } from "../App"
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,8 +23,6 @@ function Navbar() {
 
   const closePopup = () => {
     setDisplayPopup(false)
-    localStorage.setItem("isConnected", "true")
-    setIsConnected(true)
     setIsOpen(false)
   }
 
@@ -34,7 +31,7 @@ function Navbar() {
     localStorage.setItem("isConnected", "false")
     localStorage.removeItem("connectedUser")
     Cookies.remove("authToken")
-    console.info("Utilisateur déconnecté")
+    // console.info("Utilisateur déconnecté")
     navigate("/")
     setIsOpen(false)
   }
@@ -51,17 +48,19 @@ function Navbar() {
       </label>
       <div className={`dropdown-menu ${isOpen ? "open" : ""}`}>
         <nav>
-          {isConnected === true ? (
+          {connectedUser ? (
             <>
-              <p id="usernameMenu">{connectedUser.username}</p>
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  connectedUser.profil_picture
-                }
+              <Link to="/Profile">
+                <p id="usernameMenu">{connectedUser.username}</p>
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    connectedUser.profil_picture
+                  }
             `}
-                alt="profilPicture"
-                id="profilPictureNavbar"
-              />
+                  alt="profilPicture"
+                  id="profilPictureNavbar"
+                />
+              </Link>
             </>
           ) : (
             <button id="seConnecter" onClick={() => setDisplayPopup(true)}>
@@ -80,8 +79,11 @@ function Navbar() {
           <Link className="link" to="/About">
             À Propos
           </Link>
+          <Link className="link" to="/Register">
+            S'inscrire
+          </Link>
         </nav>
-        {isConnected === true && (
+        {connectedUser && (
           <button id="disconnect" onClick={handleDisconnect}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

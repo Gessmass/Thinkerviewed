@@ -4,12 +4,41 @@ const addUser = async (user) => {
   const { username, email, password } = user
 
   try {
-    const [result] = await db.query(
+    const result = await db.query(
       "INSERT INTO users (username, email_adress, hashed_password, registration_date) VALUES (?,?,?, NOW())",
       [username, email, password]
     )
+    const userId = result[0].insertId
 
-    return { id: result.insertID, username, email }
+    // Effectuez une autre requête pour obtenir les données de la nouvelle ligne
+    const userData = await db.query("SELECT * FROM users WHERE id = ?", [
+      userId,
+    ])
+
+    // Assurez-vous que la requête a renvoyé au moins une ligne
+    if (userData && userData[0] && userData[0][0]) {
+      return userData[0][0] // Renvoie la première ligne de données
+    } else {
+      throw new Error(
+        "Erreur lors de la récupération des données de l'utilisateur"
+      )
+    }
+  } catch (err) {
+    console.error(err)
+    throw new Error("Erreur lors de la création de l'utilisateur")
+  }
+}
+
+const modifyProfile = async (user) => {
+  // const { username, email, id } = user
+
+  try {
+    const [result] = await db.query(
+      "UPDATE users SET username = ?, email_adress = ?  WHERE id = ?",
+      [user.username, user.email, user.id]
+    )
+
+    return { result }
   } catch (err) {
     console.error(err)
   }
@@ -51,9 +80,24 @@ const verifyUsernameForLogin = async (username) => {
   }
 }
 
+const updateProfilPicture = async (users, profilpicturePath) => {
+  try {
+    const picture = await db.query(
+      "UPDATE Users SET profil_picture = ? WHERE id = ?",
+      [[profilpicturePath, users.id]]
+    )
+    // console.log(picture)
+    return picture
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 module.exports = {
   addUser,
   findUserByUsernameOrEmail,
   findUserByID,
   verifyUsernameForLogin,
+  modifyProfile,
+  updateProfilPicture,
 }
