@@ -22,11 +22,10 @@ export default function ConnectionPopup({ closePopup }) {
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
           setUsername("")
           setPassword("")
-          const user = res.data.user
-          localStorage.setItem("user", JSON.stringify(user))
           // console.log(user)
           closePopup()
-          window.location.reload()
+          const user = res.data.user
+          localStorage.setItem("connectedUser", JSON.stringify(user))
         }
       })
       .catch((err) => {

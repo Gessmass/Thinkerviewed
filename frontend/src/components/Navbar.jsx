@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Logo from "../assets/images/Logo.png"
 import ConnectionPopup from "./ConnectionPopup"
 import Cookies from "js-cookie"
@@ -9,12 +9,13 @@ function Navbar() {
 
   const [displayPopup, setDisplayPopup] = useState(false)
   const navigate = useNavigate()
-  const [connectedUser, setConnectedUser] = useState(null)
+  // const [trigger, setTrigger] = useState(false)
+  // const { connectedUser, setConnectedUser } = useContext(UserContext)
+  const [isConnected, setIsConnected] = useState(
+    localStorage.getItem("connectedUser") !== null
+  )
 
-  useEffect(() => {
-    const user = localStorage.getItem("user")
-    setConnectedUser(user !== null ? JSON.parse(user) : null)
-  }, [])
+  const connectedUser = JSON.parse(localStorage.getItem("connectedUser"))
 
   const toggleDropdownMenu = () => {
     setIsOpen(!isOpen)
@@ -26,15 +27,16 @@ function Navbar() {
   }
 
   const handleDisconnect = () => {
-    localStorage.clear()
+    setIsConnected(false)
+    localStorage.setItem("isConnected", "false")
+    localStorage.removeItem("connectedUser")
     Cookies.remove("authToken")
     // console.info("Utilisateur déconnecté")
     navigate("/")
     setIsOpen(false)
-    window.location.reload()
   }
 
-  // console.info(connectedUser)
+  console.info(isConnected, connectedUser)
 
   return (
     <div className="navbarBody">
