@@ -11,11 +11,9 @@ function Navbar() {
   const navigate = useNavigate()
   // const [trigger, setTrigger] = useState(false)
   // const { connectedUser, setConnectedUser } = useContext(UserContext)
-  const [isConnected, setIsConnected] = useState(
-    localStorage.getItem("connectedUser") !== null
-  )
 
-  const connectedUser = JSON.parse(localStorage.getItem("connectedUser"))
+  const user = localStorage.getItem("connectedUser")
+  const connectedUser = user ? JSON.parse(user) : null
 
   const toggleDropdownMenu = () => {
     setIsOpen(!isOpen)
@@ -27,8 +25,7 @@ function Navbar() {
   }
 
   const handleDisconnect = () => {
-    setIsConnected(false)
-    localStorage.setItem("isConnected", "false")
+    // setConnectedUser(false)
     localStorage.removeItem("connectedUser")
     Cookies.remove("authToken")
     // console.info("Utilisateur déconnecté")
@@ -36,12 +33,15 @@ function Navbar() {
     setIsOpen(false)
   }
 
-  console.info(isConnected, connectedUser)
-
   return (
     <div className="navbarBody">
       <label className="burger" htmlFor="burger">
-        <input type="checkbox" id="burger" onClick={toggleDropdownMenu} />
+        <input
+          type="checkbox"
+          id="burger"
+          checked={isOpen === true}
+          onClick={toggleDropdownMenu}
+        />
         <span></span>
         <span></span>
         <span></span>
@@ -67,20 +67,28 @@ function Navbar() {
               Se Connecter
             </button>
           )}
-          <Link className="link" to="/">
+          <Link className="link" to="/" onClick={() => setIsOpen(false)}>
             Accueil
           </Link>
-          <Link className="link" to="/Categories">
+          <Link
+            className="link"
+            to="/Categories"
+            onClick={() => setIsOpen(false)}
+          >
             Catégories
           </Link>
-          <Link className="link" to="/Contact">
+          <Link className="link" to="/Contact" onClick={() => setIsOpen(false)}>
             Contact
           </Link>
-          <Link className="link" to="/About">
+          <Link className="link" to="/About" onClick={() => setIsOpen(false)}>
             À Propos
           </Link>
-          <Link className="link" to="/Register">
-            S'inscrire
+          <Link
+            className="link"
+            to={connectedUser ? "/Profile" : "/Register"}
+            onClick={() => setIsOpen(false)}
+          >
+            {connectedUser ? "Mon profil" : "S'enregistrer"}
           </Link>
         </nav>
         {connectedUser && (

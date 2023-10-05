@@ -30,15 +30,18 @@ const addUser = async (user) => {
 }
 
 const modifyProfile = async (user) => {
-  // const { username, email, id } = user
-
   try {
-    const [result] = await db.query(
+    await db.query(
       "UPDATE users SET username = ?, email_adress = ?  WHERE id = ?",
       [user.username, user.email, user.id]
     )
 
-    return { result }
+    // const [updatedUser] = await db.query(
+    //   "SELECT * FROM users WHERE id = ?",
+    //   [user.id]
+    // );
+
+    // return updatedUser[0];
   } catch (err) {
     console.error(err)
   }
@@ -84,7 +87,7 @@ const updateProfilPicture = async (users, profilpicturePath) => {
   try {
     const picture = await db.query(
       "UPDATE Users SET profil_picture = ? WHERE id = ?",
-      [[profilpicturePath, users.id]]
+      [profilpicturePath, users.id]
     )
     // console.log(picture)
     return picture

@@ -13,6 +13,11 @@
     width: 100%;
     height: 25%;
     // border: 1px solid blue;
+    .userPicture {
+      aspect-ratio: 1/1;
+      width: 120px;
+      border-radius: 50%;
+    }
   }
   #secondContentDiv {
     display: flex;

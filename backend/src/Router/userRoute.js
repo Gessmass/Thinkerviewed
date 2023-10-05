@@ -13,7 +13,7 @@ router.put(
   usersController.updateProfilPictureUser
 )
 router.post("/createUser", usersController.createUser)
-// router.put("/modifyProfile", usersController.updateUser)
+router.put("/modifyProfile", usersController.updateUser)
 router.get("/checkUserExistence", usersController.checkUserExistence)
 
 router.use(argonHelper.verifyToken) // Authentication wall

@@ -42,6 +42,7 @@ const updateUser = async (req, res) => {
   const user = req.body
   try {
     const result = await modifyProfile(user)
+    // console.log("result", result)
     res.status(201).send(result)
   } catch (err) {
     res.sendStatus(500)

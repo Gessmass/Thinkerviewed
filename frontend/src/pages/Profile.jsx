@@ -12,7 +12,7 @@ import Gold from "../assets/images/Gold.png"
 const Profile = () => {
   const [isModifying, setIsModifying] = useState(false)
   const [imageUrl, setImageUrl] = useState(null)
-  const user = localStorage.getItem("user")
+  const user = localStorage.getItem("connectedUser")
   const [connectedUser, setConnectedUser] = useState(
     user !== null ? JSON.parse(user) : null
   )
@@ -24,6 +24,10 @@ const Profile = () => {
   }
   console.info(setConnectedUser)
   // console.log("iduser", userId)
+
+  const updateLocalStorage = (user) => {
+    localStorage.setItem("connectedUser", JSON.stringify(user))
+  }
 
   const handlePictureChange = (e) => {
     const picture = e.target.files[0]
@@ -39,18 +43,18 @@ const Profile = () => {
 
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {
-      const response = await axios.put(
-        `http://localhost:4242/user/users/${userId}/upload`,
-        formData,
-        {
+      const response = await axios
+        .put(`http://localhost:4242/user/users/${userId}/upload`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${tokenFromCookie}`,
           },
-        }
-      )
-
-      return response.data
+        })
+        .then((res) => {
+          console.info("update profile picture successfull", res.data)
+          updateLocalStorage(connectedUser)
+        })
+      return response
     } catch (error) {
       console.error(
         "Erreur lors de la mise à jour de la photo de profil :",
@@ -82,6 +86,7 @@ const Profile = () => {
       .then((res) => {
         console.info("update user successfull", res.data)
         setIsModifying(false)
+        updateLocalStorage(connectedUser)
       })
       .catch((err) => {
         console.error("A problem occurred", err)
@@ -89,6 +94,9 @@ const Profile = () => {
   }
 
   // console.log("profile connected user", connectedUser)
+  // console.log("new img", imageUrl)
+  // console.log("img user BDD", connectedUser.profil_picture)
+  // console.log(user)
 
   return (
     <div id="mainDivProfile">
@@ -185,12 +193,24 @@ const Profile = () => {
                 placeholder="Pseudo"
                 name="username"
                 value={connectedUser.username}
+                onChange={(e) =>
+                  setConnectedUser({
+                    ...connectedUser,
+                    username: e.target.value,
+                  })
+                }
               />
               <input
                 type="email"
                 placeholder="E-mail"
                 name="email"
                 value={connectedUser.email_adress}
+                onChange={(e) =>
+                  setConnectedUser({
+                    ...connectedUser,
+                    email_adress: e.target.value,
+                  })
+                }
               />
             </>
           ) : (
