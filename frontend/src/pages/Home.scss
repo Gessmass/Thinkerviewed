@@ -117,6 +117,16 @@
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
+        padding: 5px;
+        // border:1px solid red;
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 48%;
+          height: fit-content;
+          // border: 1px solid green;
+        }
       }
     }
   }

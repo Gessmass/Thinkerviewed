@@ -160,10 +160,7 @@ const Categories = () => {
         </div>
       </div>
       {filteredQuestionnaries.map((questionnary, index) => (
-        <Link
-          to={`/quizzSelon/${questionnary.id}`} // Utilisez l'ID de l'objet dans l'URL
-          key={index}
-        >
+        <Link to={`/quizzSelon/${questionnary.id}`} key={index}>
           <div id="resultDisplay" key={index}>
             <div id="protagonistName">
               <span>{questionnary.protagonist}</span>

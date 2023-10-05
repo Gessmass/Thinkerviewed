@@ -88,9 +88,6 @@ const verifyUser = (req, res, next) => {
 const updateProfilPictureUser = async (req, res) => {
   const users = req.body
 
-  // console.info(req.file)
-  // console.info(req.body)
-
   users.id = parseInt(req.params.id, 10)
 
   updateProfilPicture(

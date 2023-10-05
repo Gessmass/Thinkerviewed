@@ -1,7 +1,8 @@
 #quizCardContent {
-  width: 43%;
+  width: 100%;
   height: fit-content;
   cursor: pointer;
+  // border: 1px solid blue;
   &:hover img {
     border: 2px solid $purple-color;
     transform: scale(1.01);

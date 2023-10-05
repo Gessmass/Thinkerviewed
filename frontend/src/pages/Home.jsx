@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"
 import QuizCard from "../components/QuizCard"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 
 const Home = () => {
   const [quizsToDisplay, setQuizsToDisplay] = useState([])
@@ -62,13 +63,15 @@ const Home = () => {
         <div id="divDerniersQuizz">
           <h1 className="sectionTitle">LES DERNIERS QUIZZ</h1>
           <div id="derniersQuizContent">
-            {quizsToDisplay.map((quiz) => (
-              <QuizCard
-                key={quiz.id}
-                thumbnail={quiz.miniature}
-                title={quiz.title}
-                guest={quiz.protagonist}
-              />
+            {quizsToDisplay.map((quiz, index) => (
+              <Link to={`/quizzSelon/${quiz.id}`} key={index}>
+                <QuizCard
+                  key={quiz.id}
+                  thumbnail={quiz.miniature}
+                  title={quiz.title}
+                  guest={quiz.protagonist}
+                />
+              </Link>
             ))}
           </div>
         </div>
