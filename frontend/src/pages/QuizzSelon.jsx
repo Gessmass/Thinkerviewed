@@ -10,6 +10,7 @@ const QuizzSelon = () => {
   const [correctAnswers, setCorrectAnswers] = useState(0)
   const [wrongAnswers, setWrongAnswers] = useState(0)
   const [showPopup, setShowPopup] = useState(true)
+  const [videoStart, setVideoStart] = useState(0)
   const [userAnswers, setUserAnswers] = useState(
     new Array(questions.length).fill("")
   )
@@ -28,6 +29,9 @@ const QuizzSelon = () => {
 
   const handleOnClose = () => {
     setShowPopup(false)
+  }
+  const handleVideoSeek = (timestamp) => {
+    setVideoStart(timestamp)
   }
   const scorePercentage = (correctAnswers / totalQuestions) * 100
   const totalAnswers = correctAnswers + wrongAnswers
@@ -63,12 +67,12 @@ const QuizzSelon = () => {
       })
   }, [])
 
-  const tag = document.createElement("script")
-  tag.src = "https://www.youtube.com/iframe_api"
-  const firstScriptTag = document.getElementsByTagName("script")[0]
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+  // const tag = document.createElement("script")
+  // tag.src = "https://www.youtube.com/iframe_api"
+  // const firstScriptTag = document.getElementsByTagName("script")[0]
+  // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 
-  let player
+  // let player
 
   // OBLIGER DE COMMENTER LES DEUX FONCTIONS SUIVANTES PCK YT IS NOT DFINED DONC JPEUX PAS COMMIT SINON
 
@@ -84,18 +88,20 @@ const QuizzSelon = () => {
   //   // console.log("Player is ready!", player);
   // }
 
-  function seekVideo(event) {
-    const seconds = parseInt(event.target.getAttribute("data-timestamp"))
-    // console.log("ca marche", seconds, player)
+  // function seekVideo(event) {
+  //   const seconds = parseInt(event.target.getAttribute("data-timestamp"))
+  //   // console.log("ca marche", seconds, player)
 
-    if (player && typeof player.seekTo === "function") {
-      player.seekTo(seconds)
-    } else {
-      console.error(
-        "Player is not initialized or seekTo method is not available"
-      )
-    }
-  }
+  //   if (player && typeof player.seekTo === "function") {
+  //     player.seekTo(seconds)
+  //   } else {
+  //     console.error(
+  //       "Player is not initialized or seekTo method is not available"
+  //     )
+  //   }
+  // }
+
+  // console.log(videoStart)
 
   return (
     <div id="quizSelonContent">
@@ -120,10 +126,16 @@ const QuizzSelon = () => {
         <div id="youtubeEmbed">
           <iframe
             id="videoYoutube"
-            src={questionnaryData.video_link}
+            src={
+              videoStart === 0
+                ? `${questionnaryData.video_link}&amp;start=1`
+                : `${questionnaryData.video_link}rel=0&autoplay=1&amp;start=${videoStart}`
+            }
             title="YouTube video player"
             frameBorder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            autoPlay
           ></iframe>
         </div>
         <div id="questionCircles">
@@ -147,7 +159,7 @@ const QuizzSelon = () => {
             badAnswer={question.text_bad_answer}
             onAnswerCorrect={handleAnswerCorrect}
             onAnswerWrong={handleAnswerWrong}
-            seekVideo={seekVideo}
+            onVideoSeek={handleVideoSeek}
             setUserAnswer={(answer) => {
               const updatedUserAnswers = [...userAnswers]
               updatedUserAnswers[i] = answer

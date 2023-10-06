@@ -9,7 +9,8 @@ export default function QuestionCard({
   onAnswerCorrect,
   onAnswerWrong,
   setUserAnswer,
-  seekVideo,
+  onVideoSeek,
+  // seekVideo,
 }) {
   const [answers, setAnswers] = useState([])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -90,8 +91,9 @@ export default function QuestionCard({
             <p id="textBadAnswer">{badAnswer}</p>
             <div
               id="timeCode"
-              data-timestamp="30"
-              onClick={(e) => seekVideo(e)}
+              // data-timestamp="30"
+              // onClick={(e) => seekVideo(e)}
+              onClick={() => onVideoSeek(timestamp)}
             >
               <div id="pointRouge"></div>
               {timestamp}
