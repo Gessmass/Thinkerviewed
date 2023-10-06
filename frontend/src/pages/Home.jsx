@@ -13,7 +13,7 @@ const Home = () => {
       .get(`${import.meta.env.VITE_BACKEND_URL}/questionnary`)
       .then((res) => {
         setQuizsToDisplay(res.data)
-        console.info(res.data)
+        // console.info(res.data)
       })
       .catch((err) => {
         console.info("Error when getting Questionnary", err)

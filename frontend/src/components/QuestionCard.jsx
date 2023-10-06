@@ -9,6 +9,7 @@ export default function QuestionCard({
   onAnswerCorrect,
   onAnswerWrong,
   setUserAnswer,
+  seekVideo,
 }) {
   const [answers, setAnswers] = useState([])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -46,6 +47,8 @@ export default function QuestionCard({
       // console.log("réponse fausse");
     }
   }
+
+  // console.log(showBadAnswer)
 
   return (
     <div
@@ -85,12 +88,16 @@ export default function QuestionCard({
         {showBadAnswer && (
           <div id="badAnswer">
             <p id="textBadAnswer">{badAnswer}</p>
+            <div
+              id="timeCode"
+              data-timestamp="30"
+              onClick={(e) => seekVideo(e)}
+            >
+              <div id="pointRouge"></div>
+              {timestamp}
+            </div>
           </div>
         )}
-        <div id="timeCode">
-          <div id="pointRouge"></div>
-          {timestamp}
-        </div>
       </div>
     </div>
   )

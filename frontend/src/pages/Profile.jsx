@@ -22,8 +22,6 @@ const Profile = () => {
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
   }
-  console.info(setConnectedUser)
-  // console.log("iduser", userId)
 
   const updateLocalStorage = (user) => {
     localStorage.setItem("connectedUser", JSON.stringify(user))
@@ -92,11 +90,6 @@ const Profile = () => {
         console.error("A problem occurred", err)
       })
   }
-
-  // console.log("profile connected user", connectedUser)
-  // console.log("new img", imageUrl)
-  // console.log("img user BDD", connectedUser.profil_picture)
-  // console.log(user)
 
   return (
     <div id="mainDivProfile">

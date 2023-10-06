@@ -67,30 +67,34 @@
     #badAnswer {
       display: flex;
       height: fit-content;
-      // border:1px solid blue;
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
       p {
         color: white;
         font-family: $main-font;
-        font-size: 13px;
+        font-size: 14px;
+        text-align: justify;
       }
-    }
-    #timeCode {
-      background-color: white;
-      border-radius: 10px;
-      width: 80px;
-      height: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: $main-font;
-      font-size: 15px;
-      gap: 6px;
-      display: none;
-      #pointRouge {
-        background: #a31919;
-        height: 13px;
-        width: 13px;
-        border-radius: 8px;
+      #timeCode {
+        background-color: white;
+        border-radius: 10px;
+        width: 80px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: $main-font;
+        font-size: 15px;
+        gap: 6px;
+        #pointRouge {
+          background: #a31919;
+          height: 13px;
+          width: 13px;
+          border-radius: 8px;
+        }
       }
     }
   }

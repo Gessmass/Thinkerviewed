@@ -50,19 +50,6 @@ const QuizzSelon = () => {
             setQuestions(res.data)
             const initialUserAnswers = new Array(res.data.length).fill("")
             setUserAnswers(initialUserAnswers)
-            //   axios
-            //     .get(
-            //       `${
-            //         import.meta.env.VITE_BACKEND_URL
-            //       }/questionnary/answers/${questionId}`
-            //     )
-            //     .then((res) => {
-            //       setAnswers(res.data)
-            //       console.log("answers :", res.data)
-            //     })
-            //     .catch((err) => {
-            //       console.info("Erreur lors de la récupération des réponses", err)
-            //     })
           })
           .catch((err) => {
             console.info(
@@ -76,12 +63,40 @@ const QuizzSelon = () => {
       })
   }, [])
 
-  // console.log("mauvaise", wrongAnswers)
-  // console.log("totalreponse",totalAnswers)
-  // console.log("correcte",correctAnswers)
-  // console.log("score%",scorePercentage)
-  // console.log(totalQuestions)
-  // console.log(questions.length)
+  const tag = document.createElement("script")
+  tag.src = "https://www.youtube.com/iframe_api"
+  const firstScriptTag = document.getElementsByTagName("script")[0]
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+
+  let player
+
+  // OBLIGER DE COMMENTER LES DEUX FONCTIONS SUIVANTES PCK YT IS NOT DFINED DONC JPEUX PAS COMMIT SINON
+
+  // window.onYouTubeIframeAPIReady = function () {
+  //   player = new YT.Player("videoYoutube", {
+  //     events: {
+  //       onReady: onPlayerReady,
+  //     },
+  //   })
+  // }
+
+  // function onPlayerReady(event) {
+  //   // console.log("Player is ready!", player);
+  // }
+
+  function seekVideo(event) {
+    const seconds = parseInt(event.target.getAttribute("data-timestamp"))
+    // console.log("ca marche", seconds, player)
+
+    if (player && typeof player.seekTo === "function") {
+      player.seekTo(seconds)
+    } else {
+      console.error(
+        "Player is not initialized or seekTo method is not available"
+      )
+    }
+  }
+
   return (
     <div id="quizSelonContent">
       {showPopupScore && showPopup === true && (
@@ -104,6 +119,7 @@ const QuizzSelon = () => {
         </h3>
         <div id="youtubeEmbed">
           <iframe
+            id="videoYoutube"
             src={questionnaryData.video_link}
             title="YouTube video player"
             frameBorder="0"
@@ -131,12 +147,12 @@ const QuizzSelon = () => {
             badAnswer={question.text_bad_answer}
             onAnswerCorrect={handleAnswerCorrect}
             onAnswerWrong={handleAnswerWrong}
+            seekVideo={seekVideo}
             setUserAnswer={(answer) => {
               const updatedUserAnswers = [...userAnswers]
               updatedUserAnswers[i] = answer
               setUserAnswers(updatedUserAnswers)
             }}
-            // answers={answers}
           />
         ))}
       </div>

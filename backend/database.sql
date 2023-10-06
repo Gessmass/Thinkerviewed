@@ -44,6 +44,36 @@ INSERT INTO `Answers` VALUES (1,'L\'énergie solaire',0,1),(2,'La combustion des
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Medals`
+--
+
+DROP TABLE IF EXISTS `Medals`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Medals` (
+  `id` int NOT NULL,
+  `type` enum('chocolate','iron','bronze','silver','gold','diamond') NOT NULL,
+  `photo_path` varchar(255) DEFAULT NULL,
+  `Users_id` int NOT NULL,
+  `Questionnary_id` int NOT NULL,
+  PRIMARY KEY (`id`,`Users_id`,`Questionnary_id`),
+  KEY `fk_Medals_Users_idx` (`Users_id`),
+  KEY `fk_Medals_Questionnary1_idx` (`Questionnary_id`),
+  CONSTRAINT `fk_Medals_Questionnary1` FOREIGN KEY (`Questionnary_id`) REFERENCES `Questionnary` (`id`),
+  CONSTRAINT `fk_Medals_Users` FOREIGN KEY (`Users_id`) REFERENCES `Users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Medals`
+--
+
+LOCK TABLES `Medals` WRITE;
+/*!40000 ALTER TABLE `Medals` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Medals` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Questionnary`
 --
 
@@ -168,4 +198,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-02 14:38:26
+-- Dump completed on 2023-10-06 11:14:37
