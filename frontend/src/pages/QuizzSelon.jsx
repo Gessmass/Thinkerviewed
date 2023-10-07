@@ -15,7 +15,6 @@ const QuizzSelon = () => {
     new Array(questions.length).fill("")
   )
 
-  // const [answers, setAnswers] = useState([])
   const { id } = useParams()
   const totalQuestions = questions.length
 
@@ -67,40 +66,6 @@ const QuizzSelon = () => {
       })
   }, [])
 
-  // const tag = document.createElement("script")
-  // tag.src = "https://www.youtube.com/iframe_api"
-  // const firstScriptTag = document.getElementsByTagName("script")[0]
-  // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-
-  // let player
-
-  // OBLIGER DE COMMENTER LES DEUX FONCTIONS SUIVANTES PCK YT IS NOT DFINED DONC JPEUX PAS COMMIT SINON
-
-  // window.onYouTubeIframeAPIReady = function () {
-  //   player = new YT.Player("videoYoutube", {
-  //     events: {
-  //       onReady: onPlayerReady,
-  //     },
-  //   })
-  // }
-
-  // function onPlayerReady(event) {
-  //   // console.log("Player is ready!", player);
-  // }
-
-  // function seekVideo(event) {
-  //   const seconds = parseInt(event.target.getAttribute("data-timestamp"))
-  //   // console.log("ca marche", seconds, player)
-
-  //   if (player && typeof player.seekTo === "function") {
-  //     player.seekTo(seconds)
-  //   } else {
-  //     console.error(
-  //       "Player is not initialized or seekTo method is not available"
-  //     )
-  //   }
-  // }
-
   // console.log(videoStart)
 
   return (
@@ -128,7 +93,7 @@ const QuizzSelon = () => {
             id="videoYoutube"
             src={
               videoStart === 0
-                ? `${questionnaryData.video_link}&amp;start=1`
+                ? `${questionnaryData.video_link}&amp;start=${videoStart}`
                 : `${questionnaryData.video_link}rel=0&autoplay=1&amp;start=${videoStart}`
             }
             title="YouTube video player"

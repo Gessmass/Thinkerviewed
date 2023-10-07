@@ -17,18 +17,24 @@ export default function QuestionCard({
   const [answerIsCorrect, setAnswerIsCorrect] = useState(null)
   const [showBadAnswer, setShowBadAnswer] = useState(false)
 
-  useEffect(() => {
-    axios
-      .get(
-        `${import.meta.env.VITE_BACKEND_URL}/questionnary/answers/${questionId}`
-      )
-      .then((res) => {
-        setAnswers(res.data)
-      })
-      .catch((err) => {
-        console.info("Erreur lors de la récupération des réponses", err)
-      })
-  }, [])
+  const formatTime = (timestamp) => {
+    const hours = Math.floor(timestamp / 3600)
+    const minutes = Math.floor((timestamp % 3600) / 60)
+    const remainingSeconds = timestamp % 60
+
+    if (hours > 0) {
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(
+        2,
+        "0"
+      )}:${String(remainingSeconds).padStart(2, "0")}`
+    } else {
+      return `${String(minutes).padStart(2, "0")}:${String(
+        remainingSeconds
+      ).padStart(2, "0")}`
+    }
+  }
+
+  const formatedTime = formatTime(timestamp)
 
   const handleSelectedAnswer = (isCorrect, answerId, answerIndex) => {
     if (selectedAnswer !== null) {
@@ -48,6 +54,19 @@ export default function QuestionCard({
       // console.log("réponse fausse");
     }
   }
+
+  useEffect(() => {
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/questionnary/answers/${questionId}`
+      )
+      .then((res) => {
+        setAnswers(res.data)
+      })
+      .catch((err) => {
+        console.info("Erreur lors de la récupération des réponses", err)
+      })
+  }, [])
 
   // console.log(showBadAnswer)
 
@@ -77,7 +96,7 @@ export default function QuestionCard({
               <input
                 type="radio"
                 name="answer"
-                onChange={() =>
+                onClick={() =>
                   handleSelectedAnswer(answer.is_correct, answer.id, index)
                 }
                 disabled={selectedAnswer !== null}
@@ -89,14 +108,9 @@ export default function QuestionCard({
         {showBadAnswer && (
           <div id="badAnswer">
             <p id="textBadAnswer">{badAnswer}</p>
-            <div
-              id="timeCode"
-              // data-timestamp="30"
-              // onClick={(e) => seekVideo(e)}
-              onClick={() => onVideoSeek(timestamp)}
-            >
+            <div id="timeCode" onClick={() => onVideoSeek(timestamp)}>
               <div id="pointRouge"></div>
-              {timestamp}
+              {formatedTime}
             </div>
           </div>
         )}
